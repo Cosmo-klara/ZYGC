@@ -1,12 +1,17 @@
 ## 数据字典 --第二版
 
-E-R 图暂无
+### E-R 图
 
-推荐结果表和成绩差距分析表应该是功能实现的分析，是视图类型或许可以
-
-志愿偏好表应该是本地数据存放
-
-最后需要的数据表：
+```mermaid
+erDiagram
+    COLLEGE（院校） ||--o{ ADMISSION（录取分数线） : "has"
+    COLLEGE（院校） ||--o{ PLAN（招生计划） : "has"
+    COLLEGE（院校） ||--o{ SCHOOL_ENROLLMENT（高中升学） : "has"
+    SCHOOL_ENROLLMENT（高中升学） ||--o{ MAJOR（专业） : "for"
+    ADMISSION（录取分数线） ||--o{ MAJOR（专业） : "for"
+    PLAN（招生计划） ||--o{ MAJOR（专业） : "for"
+    USER（用户）    ||--o{ SCORE（成绩） : "has"
+```
 
 ### 系统基础数据类
 
