@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高考志愿填报辅助系统 - 管理员后台原型</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2C5BF0;
+      --accent: #7A5CFA;
+      --success: #21B573;
+      --warning: #FF9F43;
+      --danger: #F04F52;
+      --gray-50: #F6F8FD;
+      --gray-100: #ECEFF8;
+      --gray-300: #D3DAEA;
+      --gray-500: #7C8BA5;
+      --gray-700: #3C4865;
+      --gray-900: #1F2433;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 12px 32px rgba(31, 69, 197, 0.08);
+      --shadow-lg: 0 28px 64px rgba(31, 69, 197, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-700);
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+
+    aside {
+      background: #fff;
+      border-right: 1px solid rgba(44, 91, 240, 0.06);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand span:last-child {
+      background: rgba(44, 91, 240, 0.12);
+      color: var(--primary);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.8px;
+    }
+
+    nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .nav-group-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 8px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    li a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      color: var(--gray-700);
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      background: transparent;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+
+    li a.active, li a:hover {
+      background: rgba(44, 91, 240, 0.12);
+      color: var(--primary);
+    }
+
+    li a .badge {
+      background: rgba(240, 79, 82, 0.15);
+      color: var(--danger);
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+    }
+
+    .support-card {
+      margin-top: auto;
+      background: linear-gradient(145deg, rgba(44, 91, 240, 0.12), rgba(44, 91, 240, 0.04));
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .support-card button {
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      height: 78px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      border-bottom: 1px solid rgba(44, 91, 240, 0.06);
+    }
+
+    header .left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    header .left h1 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--gray-900);
+    }
+
+    header .left span {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    header .right {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    header .right button {
+      border: none;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: rgba(44, 91, 240, 0.12);
+      color: var(--primary);
+    }
+
+    header .right .primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(44, 91, 240, 0.25);
+    }
+
+    .admin-page {
+      display: none;
+      padding: 28px 32px 40px;
+      overflow-y: auto;
+      animation: fadeIn 0.24s ease;
+    }
+
+    .admin-page.active {
+      display: block;
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 24px;
+    }
+
+    .panel {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 180px;
+    }
+
+    .panel.full {
+      grid-column: 1 / -1;
+    }
+
+    .panel h2 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--gray-900);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .panel h2 span {
+      font-size: 12px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .metric-card {
+      background: linear-gradient(150deg, rgba(44, 91, 240, 0.12), rgba(44, 91, 240, 0.02));
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .metric-card small {
+      font-size: 12px;
+      color: var(--gray-500);
+      letter-spacing: 0.6px;
+    }
+
+    .metric-card strong {
+      font-size: 22px;
+      color: var(--primary);
+    }
+
+    .metric-trend {
+      font-size: 12px;
+      color: var(--success);
+    }
+
+    .metric-trend.danger { color: var(--danger); }
+    .metric-trend.neutral { color: var(--gray-500); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px 8px;
+      border-bottom: 1px solid rgba(44, 91, 240, 0.08);
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--gray-500);
+    }
+
+    .status-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .status-ok { background: rgba(33, 181, 115, 0.16); color: var(--success); }
+    .status-warning { background: rgba(255, 159, 67, 0.16); color: var(--warning); }
+    .status-risk { background: rgba(240, 79, 82, 0.16); color: var(--danger); }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .timeline-item span {
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    .timeline-item p {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      background: rgba(44, 91, 240, 0.12);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(44, 91, 240, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-track span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(120deg, #FFB676, #FF8146);
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    .actions-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .actions-row button {
+      border: none;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px dashed rgba(44, 91, 240, 0.35);
+      color: var(--primary);
+    }
+
+    .btn-danger {
+      background: rgba(240, 79, 82, 0.1);
+      color: var(--danger);
+    }
+
+    .chart-placeholder {
+      height: 220px;
+      background: linear-gradient(140deg, rgba(122, 92, 250, 0.12), rgba(44, 91, 240, 0.04));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .list-item {
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(44, 91, 240, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .list-item strong {
+      color: var(--gray-900);
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 18px 32px;
+      font-size: 12px;
+      color: var(--gray-500);
+      border-top: 1px solid rgba(44, 91, 240, 0.06);
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 1320px) {
+      body {
+        grid-template-columns: 220px 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .split-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 960px) {
+      body {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        display: none;
+      }
+
+      header {
+        padding: 20px;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .admin-page {
+        padding: 20px;
+      }
+
+      footer {
+        padding: 18px 20px;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <div class="brand">
+      <strong>志愿智荐</strong>
+      <span>ADMIN</span>
+    </div>
+
+    <nav>
+      <div>
+        <div class="nav-group-title">总览</div>
+        <ul>
+          <li><a href="#" class="active" data-page="dashboard" data-label="监控仪表盘">监控仪表盘</a></li>
+          <li><a href="#" data-page="reports" data-label="报表中心">报表中心</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="nav-group-title">数据管理</div>
+        <ul>
+          <li><a href="#" data-page="schools" data-label="院校数据">院校数据</a></li>
+          <li><a href="#" data-page="students" data-label="生源数据">生源数据</a></li>
+          <li><a href="#" data-page="exam-info" data-label="高考信息完善">高考信息完善</a></li>
+          <li><a href="#" data-page="imports" data-label="批量导入">批量导入 <span class="badge">3</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="nav-group-title">算法与配置</div>
+        <ul>
+          <li><a href="#" data-page="model" data-label="推荐模型">推荐模型</a></li>
+          <li><a href="#" data-page="weights" data-label="权重策略">权重策略</a></li>
+          <li><a href="#" data-page="release" data-label="灰度发布">灰度发布</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="nav-group-title">用户与系统</div>
+        <ul>
+          <li><a href="#" data-page="feedback" data-label="用户反馈">用户反馈</a></li>
+          <li><a href="#" data-page="roles" data-label="角色权限">角色权限</a></li>
+          <li><a href="#" data-page="announcement" data-label="公告发布">公告发布</a></li>
+          <li><a href="#" data-page="logs" data-label="操作日志">操作日志</a></li>
+        </ul>
+      </div>
+    </nav>
+  </aside>
+
+  <main>
+    <header>
+      <div class="left">
+        <h1>监控仪表盘</h1>
+        <span>最近更新：2025-10-24 08:30</span>
+      </div>
+      <div class="right">
+        <button data-jump="imports">刷新数据源</button>
+        <button class="primary" data-jump="announcement">发布公告</button>
+      </div>
+    </header>
+
+    <div class="admin-page active" data-page="dashboard">
+      <div class="panel full" id="metrics-overview">
+        <h2>关键指标总览 <span>过去 24 小时</span></h2>
+        <div class="metrics">
+          <div class="metric-card">
+            <small>成功导入任务</small>
+            <strong>18</strong>
+            <span class="metric-trend">+12% vs. 昨日</span>
+          </div>
+          <div class="metric-card">
+            <small>模型版本</small>
+            <strong>v1.7.2</strong>
+            <span class="metric-trend neutral">灰度发布至 35% 用户</span>
+          </div>
+          <div class="metric-card">
+            <small>异常告警</small>
+            <strong>3</strong>
+            <span class="metric-trend danger">2 条待处理</span>
+          </div>
+          <div class="metric-card">
+            <small>活跃考生</small>
+            <strong>12,480</strong>
+            <span class="metric-trend">+6.4% 新增</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-grid">
+        <div class="panel" id="data-tasks">
+          <h2>数据刷新任务 <span>最近 12 小时</span></h2>
+          <table>
+            <thead>
+              <tr>
+                <th>任务名称</th>
+                <th>数据集</th>
+                <th>触发方式</th>
+                <th>状态</th>
+                <th>耗时</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>院校批量导入 - 浙江</td>
+                <td>院校分数线</td>
+                <td>手动</td>
+                <td><span class="status-pill status-ok">成功</span></td>
+                <td>02:36</td>
+              </tr>
+              <tr>
+                <td>生源数据同步 - 杭州二中</td>
+                <td>生源档案</td>
+                <td>定时</td>
+                <td><span class="status-pill status-warning">校验问题</span></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>报考热度更新</td>
+                <td>平台行为日志</td>
+                <td>定时</td>
+                <td><span class="status-pill status-ok">成功</span></td>
+                <td>00:52</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="actions-row">
+            <button class="btn-outline">查看历史任务</button>
+            <button class="btn-danger">暂停自动同步</button>
+          </div>
+        </div>
+
+        <div class="panel" id="alert-center">
+          <h2>异常与告警 <span>按优先级排序</span></h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span>高 · 10:24</span>
+              <p>上海市生源数据导入失败，原因：学校名称与标准库不匹配（共 18 条记录）。</p>
+            </div>
+            <div class="timeline-item">
+              <span>中 · 09:55</span>
+              <p>推荐模型 v1.7.2 A/B 测试中冲刺院校命中率低 4.3%，建议监控。</p>
+            </div>
+            <div class="timeline-item">
+              <span>低 · 09:20</span>
+              <p>用户反馈：「广西 2022 年院校分数线缺失」，已指派张伟处理。</p>
+            </div>
+          </div>
+          <div class="chips">
+            <span class="chip">指派处理人</span>
+            <span class="chip">创建工单</span>
+            <span class="chip">导出报告</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel full" id="model-console">
+        <h2>模型与策略控制台 <span>当前灰度：35%</span></h2>
+        <div class="split-grid">
+          <div>
+            <div class="chart-placeholder">模型效果对比图占位</div>
+            <p style="font-size:13px; color: var(--gray-500);">展示新老模型在推荐命中率、点击率、用户满意度维度的对比，支持切换时间范围。</p>
+          </div>
+          <div class="list">
+            <div class="list-item">
+              <div>
+                <strong>权重策略</strong>
+                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">偏好权重 40%，成绩匹配 45%，热度调节 15%</p>
+              </div>
+              <button class="btn-outline">调整</button>
+            </div>
+            <div class="list-item">
+              <div>
+                <strong>灰度发布</strong>
+                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">当前面向 3 省考生；下一阶段目标 60%</p>
+              </div>
+              <button class="btn-outline">配置</button>
+            </div>
+            <div class="list-item">
+              <div>
+                <strong>回滚策略</strong>
+                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">若命中率下降 >5% 触发自动回滚</p>
+              </div>
+              <button class="btn-outline">查看日志</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel full" id="feedback-board">
+        <h2>用户反馈与公告 <span>24 小时内</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>来源</th>
+              <th>类型</th>
+              <th>内容概述</th>
+              <th>状态</th>
+              <th>更新时间</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>考生 · 李同学</td>
+              <td>功能建议</td>
+              <td>希望新增志愿草案版本对比功能。</td>
+              <td><span class="status-pill status-warning">处理中</span></td>
+              <td>09:30</td>
+            </tr>
+            <tr>
+              <td>家长 · 张女士</td>
+              <td>数据问题</td>
+              <td>河北 2023 年位次查询异常。</td>
+              <td><span class="status-pill status-ok">已解决</span></td>
+              <td>08:45</td>
+            </tr>
+            <tr>
+              <td>系统公告</td>
+              <td>发布计划</td>
+              <td>10 月 28 日例行停机维护 02:00-04:00。</td>
+              <td><span class="status-pill status-ok">已发布</span></td>
+              <td>昨日</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="actions-row">
+          <button class="btn-outline">查看全部反馈</button>
+          <button class="btn-outline">发布新公告</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="reports">
+      <div class="panel full">
+        <h2>报表中心 <span>导出与订阅</span></h2>
+        <div class="list">
+          <div class="list-item">
+            <div>
+              <strong>院校热度日报</strong>
+              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">包含 TOP20 热度院校与风险提示，支持每日邮件订阅。</p>
+            </div>
+            <button class="btn-outline">导出 CSV</button>
+          </div>
+          <div class="list-item">
+            <div>
+              <strong>考生活跃周报</strong>
+              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">按省份拆分新增/流失用户，支持自动推送给省级管理员。</p>
+            </div>
+            <button class="btn-outline">订阅</button>
+          </div>
+          <div class="list-item">
+            <div>
+              <strong>模型表现分析</strong>
+              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">包含命中率、点击率、满意度三项指标的历史趋势。</p>
+            </div>
+            <button class="btn-outline">查看详情</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="schools">
+      <div class="panel full">
+        <h2>院校数据维护 <span>最新导入批次：2025-10-23</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>院校</th>
+              <th>省份</th>
+              <th>数据版本</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>华东师范大学</td>
+              <td>上海</td>
+              <td>2025 v2</td>
+              <td><span class="status-pill status-ok">已发布</span></td>
+              <td><span class="chip">查看详情</span></td>
+            </tr>
+            <tr>
+              <td>浙江大学</td>
+              <td>浙江</td>
+              <td>2025 v1</td>
+              <td><span class="status-pill status-warning">待校验</span></td>
+              <td><span class="chip">指派</span></td>
+            </tr>
+            <tr>
+              <td>南京大学</td>
+              <td>江苏</td>
+              <td>2024 v4</td>
+              <td><span class="status-pill status-ok">已发布</span></td>
+              <td><span class="chip">导出</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="students">
+      <div class="panel full">
+        <h2>生源数据监控 <span>覆盖高中：2,460 所</span></h2>
+        <div class="list">
+          <div class="list-item">
+            <div>
+              <strong>杭州第二中学</strong>
+              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">近三年录取数据齐全，最后更新：2025-10-20</p>
+            </div>
+            <button class="btn-outline">明细</button>
+          </div>
+          <div class="list-item">
+            <div>
+              <strong>武汉外国语学校</strong>
+              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">缺失 2023 年数据，等待学校反馈。</p>
+            </div>
+            <button class="btn-outline">催办</button>
+          </div>
+          <div class="list-item">
+            <div>
+              <strong>广州市执信中学</strong>
+              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">自动同步成功，位次校验通过。</p>
+            </div>
+            <button class="btn-outline">查看</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="exam-info">
+      <div class="panel full">
+        <h2>高考信息完善总览 <span>本周状态</span></h2>
+        <div class="metrics">
+          <div class="metric-card">
+            <small>今日新增提交</small>
+            <strong>128</strong>
+            <span class="metric-trend">+18% vs. 昨日</span>
+          </div>
+          <div class="metric-card">
+            <small>审核待处理</small>
+            <strong>42</strong>
+            <span class="metric-trend danger">优先处理 12 条</span>
+          </div>
+          <div class="metric-card">
+            <small>信息完整率</small>
+            <strong>86%</strong>
+            <span class="metric-trend">目标：90%</span>
+          </div>
+          <div class="metric-card">
+            <small>数据同步延迟</small>
+            <strong>14 分钟</strong>
+            <span class="metric-trend neutral">API 正常</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-grid">
+        <div class="panel" id="exam-pending">
+          <h2>待跟进考生 <span>按更新时间排序</span></h2>
+          <table>
+            <thead>
+              <tr>
+                <th>考生</th>
+                <th>所在学校</th>
+                <th>缺失项</th>
+                <th>更新时间</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>李晨</td>
+                <td>北京四中</td>
+                <td><span class="status-pill status-warning">未填位次</span></td>
+                <td>10-24 09:32</td>
+              </tr>
+              <tr>
+                <td>王乐</td>
+                <td>上海建平中学</td>
+                <td><span class="status-pill status-risk">数据异常</span></td>
+                <td>10-24 09:10</td>
+              </tr>
+              <tr>
+                <td>周恬</td>
+                <td>南京外国语学校</td>
+                <td><span class="status-pill status-warning">缺少科目</span></td>
+                <td>10-24 08:58</td>
+              </tr>
+              <tr>
+                <td>陈一</td>
+                <td>广州执信中学</td>
+                <td><span class="status-pill status-warning">需确认身份</span></td>
+                <td>10-24 08:45</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="actions-row">
+            <button class="btn-outline">导出提醒列表</button>
+            <button class="btn-danger">批量通知</button>
+          </div>
+        </div>
+
+        <div class="panel" id="exam-alerts">
+          <h2>异常聚合 & 关注点 <span>实时刷新</span></h2>
+          <div class="list">
+            <div class="list-item">
+              <div>
+                <strong>模拟考成绩偏差 > 30 分</strong>
+                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">涉及 6 名考生，建议复核录入来源。</p>
+              </div>
+              <span class="chip">查看</span>
+            </div>
+            <div class="list-item">
+              <div>
+                <strong>省份切换审批待办</strong>
+                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">北京→天津的申请需本周完成。</p>
+              </div>
+              <span class="chip">指派</span>
+            </div>
+            <div class="list-item">
+              <div>
+                <strong>录入模板版本过期</strong>
+                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">广东省样本需更新 2026 版。</p>
+              </div>
+              <span class="chip">下载新模板</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel full" id="exam-region">
+        <h2>地区完善进度 <span>重点关注省份</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>省份</th>
+              <th>完善率</th>
+              <th>在读年级分布</th>
+              <th>提醒</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>北京</td>
+              <td>
+                <div class="progress-track"><span style="width: 78%;"></span></div>
+                <div class="progress-meta"><span>78%</span><span>目标 90%</span></div>
+              </td>
+              <td><div class="chips"><span class="chip">高三 62%</span><span class="chip">高二 30%</span></div></td>
+              <td>剩余 36 人待同步模拟考成绩。</td>
+            </tr>
+            <tr>
+              <td>上海</td>
+              <td>
+                <div class="progress-track"><span style="width: 86%;"></span></div>
+                <div class="progress-meta"><span>86%</span><span>目标 92%</span></div>
+              </td>
+              <td><div class="chips"><span class="chip">高三 70%</span><span class="chip">高二 22%</span></div></td>
+              <td>重点学校需补录选科组合。</td>
+            </tr>
+            <tr>
+              <td>浙江</td>
+              <td>
+                <div class="progress-track"><span style="width: 91%;"></span></div>
+                <div class="progress-meta"><span>91%</span><span>目标 94%</span></div>
+              </td>
+              <td><div class="chips"><span class="chip">高三 68%</span><span class="chip">高考复读 12%</span></div></td>
+              <td>个别考生科目重复，需人工处理。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="imports">
+      <div class="panel full">
+        <h2>批量导入任务 <span>待处理 3</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>提交人</th>
+              <th>数据类型</th>
+              <th>提交时间</th>
+              <th>进度</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>张伟</td>
+              <td>院校分数线</td>
+              <td>10-24 09:50</td>
+              <td><span class="status-pill status-warning">待校验</span></td>
+              <td><span class="chip">校验</span></td>
+            </tr>
+            <tr>
+              <td>李娜</td>
+              <td>生源档案</td>
+              <td>10-24 08:40</td>
+              <td><span class="status-pill status-risk">失败</span></td>
+              <td><span class="chip">查看日志</span></td>
+            </tr>
+            <tr>
+              <td>王强</td>
+              <td>院校介绍</td>
+              <td>10-23 19:12</td>
+              <td><span class="status-pill status-ok">成功</span></td>
+              <td><span class="chip">发布</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="model">
+      <div class="panel full">
+        <h2>推荐模型版本 <span>当前：v1.7.2</span></h2>
+        <div class="list">
+          <div class="list-item">
+            <div>
+              <strong>AB 测试结果</strong>
+              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">命中率 +2.8%，用户满意度 +1.3%，点击率持平。</p>
+            </div>
+            <button class="btn-outline">查看报告</button>
+          </div>
+          <div class="list-item">
+            <div>
+              <strong>特征变更</strong>
+              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">新增热度衰减系数，引入高中历史录取稳定性特征。</p>
+            </div>
+            <button class="btn-outline">参数</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="weights">
+      <div class="panel full">
+        <h2>权重策略配置 <span>同步至 2025-10-18</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th>权重</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>成绩匹配</td>
+              <td>45%</td>
+              <td>根据位次差距自适应调整。</td>
+            </tr>
+            <tr>
+              <td>主观偏好</td>
+              <td>40%</td>
+              <td>考生自定义地区、院校层级、专业权重。</td>
+            </tr>
+            <tr>
+              <td>报考热度</td>
+              <td>15%</td>
+              <td>结合平台热度与官方数据，检测扎堆风险。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="actions-row">
+          <button class="btn-outline">编辑草稿</button>
+          <button class="btn-outline">提交审批</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="release">
+      <div class="panel full">
+        <h2>灰度发布计划 <span>35% → 60%</span></h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span>阶段一</span>
+            <p>浙江 / 上海 / 江苏 考生开启新模型，预计 10-25 完成监控。</p>
+          </div>
+          <div class="timeline-item">
+            <span>阶段二</span>
+            <p>扩展至长春、武汉地区，预计 11-05 前完成。</p>
+          </div>
+          <div class="timeline-item">
+            <span>回滚预案</span>
+            <p>命中率下降大于 5% 或反馈异常集中时触发自动回滚。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="feedback">
+      <div class="panel full">
+        <h2>用户反馈看板 <span>本周共 86 条</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>来源</th>
+              <th>类别</th>
+              <th>优先级</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>考生 · 王同学</td>
+              <td>产品体验</td>
+              <td><span class="status-pill status-warning">中</span></td>
+              <td>已指派</td>
+            </tr>
+            <tr>
+              <td>家长 · 刘先生</td>
+              <td>数据问题</td>
+              <td><span class="status-pill status-risk">高</span></td>
+              <td>处理中</td>
+            </tr>
+            <tr>
+              <td>老师 · 赵老师</td>
+              <td>功能建议</td>
+              <td><span class="status-pill status-steady">低</span></td>
+              <td>已解决</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="roles">
+      <div class="panel full">
+        <h2>角色权限管理 <span>共 5 种角色</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>角色</th>
+              <th>成员数</th>
+              <th>关键权限</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>超级管理员</td>
+              <td>4</td>
+              <td>全站配置、数据发布</td>
+              <td><span class="chip">编辑</span></td>
+            </tr>
+            <tr>
+              <td>数据管理员</td>
+              <td>12</td>
+              <td>导入校验、数据审核</td>
+              <td><span class="chip">分配</span></td>
+            </tr>
+            <tr>
+              <td>客服</td>
+              <td>20</td>
+              <td>反馈处理、公告发布</td>
+              <td><span class="chip">查看</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="announcement">
+      <div class="panel full">
+        <h2>公告发布中心 <span>最近发布：10-23</span></h2>
+        <div class="list">
+          <div class="list-item">
+            <div>
+              <strong>系统维护通知</strong>
+              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">计划在 10 月 28 日凌晨进行升级，请提前做好准备。</p>
+            </div>
+            <button class="btn-outline">编辑</button>
+          </div>
+          <div class="list-item">
+            <div>
+              <strong>数据更新说明</strong>
+              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">2025 年部分省份位次表已更新，提醒考生及时刷新。</p>
+            </div>
+            <button class="btn-outline">发布新公告</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-page" data-page="logs">
+      <div class="panel full">
+        <h2>操作日志 <span>最近 50 条</span></h2>
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>用户</th>
+              <th>操作</th>
+              <th>详情</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10-24 09:12</td>
+              <td>张伟</td>
+              <td>导入生源数据</td>
+              <td>成功，记录数 1200</td>
+            </tr>
+            <tr>
+              <td>10-24 08:55</td>
+              <td>李娜</td>
+              <td>发布系统公告</td>
+              <td>维护通知 v1.2</td>
+            </tr>
+            <tr>
+              <td>10-24 08:40</td>
+              <td>王强</td>
+              <td>调整权重策略</td>
+              <td>偏好权重从 35% 调整至 40%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer>
+      <span>© 2025 志愿智荐 · 管理员后台</span>
+      <span>版本号：Admin v0.4 · 最近部署：2025-10-22</span>
+    </footer>
+
+    <script>
+      const navLinks = Array.from(document.querySelectorAll('nav a[data-page]'));
+      const adminPages = Array.from(document.querySelectorAll('.admin-page'));
+      const headerTitle = document.querySelector('header .left h1');
+      const headerSubtitle = document.querySelector('header .left span');
+      const quickActions = Array.from(document.querySelectorAll('header .right button[data-jump]'));
+
+      const pageMeta = {
+        dashboard: { subtitle: '最近更新：2025-10-24 08:30' },
+        reports: { subtitle: '导出常用报表示例与订阅设置' },
+        schools: { subtitle: '维护院校库数据和校验状态' },
+        students: { subtitle: '监控重点高中数据的完整性' },
+  'exam-info': { subtitle: '监控考生高考信息完善进度与异常' },
+        imports: { subtitle: '查看批量导入任务的进度与日志' },
+        model: { subtitle: '分析最新模型版本与实验表现' },
+        weights: { subtitle: '管理推荐权重与审批流程' },
+        release: { subtitle: '规划灰度发布节奏与回滚策略' },
+        feedback: { subtitle: '跟踪考生、家长和老师的反馈处理' },
+        roles: { subtitle: '配置角色权限与成员分配' },
+        announcement: { subtitle: '发布系统公告并查看历史记录' },
+        logs: { subtitle: '审计最新操作日志与变更记录' }
+      };
+
+      function activateAdminPage(target) {
+        if (!target) return;
+
+        adminPages.forEach(page => {
+          page.classList.toggle('active', page.dataset.page === target);
+        });
+
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.page === target);
+        });
+
+        const activeLink = navLinks.find(link => link.dataset.page === target);
+        const label = activeLink?.dataset.label || '管理员后台';
+        const subtitle = pageMeta[target]?.subtitle || '请选择模块查看详细内容';
+
+        headerTitle.textContent = label;
+        headerSubtitle.textContent = subtitle;
+
+        if (window.location.hash.replace('#', '') !== target) {
+          window.history.replaceState(null, '', `#${target}`);
+        }
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', event => {
+          event.preventDefault();
+          activateAdminPage(link.dataset.page);
+        });
+      });
+
+      quickActions.forEach(button => {
+        button.addEventListener('click', () => {
+          const target = button.dataset.jump;
+          if (!target) return;
+          activateAdminPage(target);
+        });
+      });
+
+      const initialHash = window.location.hash.replace('#', '');
+      if (initialHash && adminPages.some(page => page.dataset.page === initialHash)) {
+        activateAdminPage(initialHash);
+      } else {
+        activateAdminPage('dashboard');
+      }
+    </script>
+  </main>
+</body>
+</html>
