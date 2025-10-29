@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,1220 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #2C5BF0;
-      --primary-light: #4E7BFF;
-      --primary-dark: #1A42C7;
-      --success: #21B573;
-      --warning: #FF9F43;
-      --danger: #F04F52;
-      --info: #00B8D4;
-      --gray-50: #FAFBFC;
-      --gray-100: #F5F7FB;
-      --gray-200: #E8ECF4;
-      --gray-300: #D3D9E5;
-      --gray-500: #7C8698;
-      --gray-700: #424A59;
-      --gray-900: #1F2430;
-      --radius-xl: 20px;
-      --radius-lg: 16px;
-      --radius-md: 12px;
-      --radius-sm: 8px;
-      --shadow-sm: 0 2px 8px rgba(44, 91, 240, 0.08);
-      --shadow-md: 0 8px 24px rgba(44, 91, 240, 0.12);
-      --shadow-lg: 0 16px 40px rgba(44, 91, 240, 0.16);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-      background: linear-gradient(135deg, #EEF3FF 0%, #F8FAFF 100%);
-      color: var(--gray-900);
-      min-height: 100vh;
-    }
-
-    /* 登录页面样式 */
-    .auth-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-
-    .auth-box {
-      background: white;
-      border-radius: var(--radius-xl);
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
-      padding: 48px;
-      width: 100%;
-      max-width: 480px;
-      animation: slideUp 0.4s ease;
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .auth-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .auth-header h1 {
-      font-size: 28px;
-      color: var(--gray-900);
-      margin-bottom: 8px;
-    }
-
-    .auth-header p {
-      color: var(--gray-500);
-      font-size: 15px;
-    }
-
-    .auth-tabs {
-      display: flex;
-      gap: 8px;
-      background: var(--gray-100);
-      padding: 6px;
-      border-radius: var(--radius-md);
-      margin-bottom: 32px;
-    }
-
-    .auth-tab {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      background: transparent;
-      color: var(--gray-500);
-      font-size: 15px;
-      font-weight: 600;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: inherit;
-    }
-
-    .auth-tab.active {
-      background: white;
-      color: var(--primary);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .auth-form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .form-group label {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--gray-700);
-    }
-
-    .form-group input {
-      padding: 14px 16px;
-      border: 2px solid var(--gray-200);
-      border-radius: var(--radius-md);
-      font-size: 15px;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(44, 91, 240, 0.1);
-    }
-
-    .form-hint {
-      font-size: 12px;
-      color: var(--gray-500);
-    }
-
-    .auth-button {
-      padding: 16px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-      color: white;
-      border: none;
-      border-radius: var(--radius-md);
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 8px 20px rgba(44, 91, 240, 0.3);
-      font-family: inherit;
-    }
-
-    .auth-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(44, 91, 240, 0.4);
-    }
-
-    .auth-button:active {
-      transform: translateY(0);
-    }
-
-    /* 主应用布局 */
-    .app-container {
-      display: none;
-      min-height: 100vh;
-    }
-
-    .app-container.active {
-      display: flex;
-    }
-
-    aside {
-      width: 280px;
-      background: white;
-      padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      border-right: 1px solid var(--gray-200);
-      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.02);
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: auto;
-      flex-shrink: 0;
-      align-self: flex-start;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 22px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 20px;
-    }
-
-    nav {
-      flex: 1;
-    }
-
-    .nav-group {
-      margin-bottom: 32px;
-    }
-
-    .nav-group-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      color: var(--gray-500);
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-      font-weight: 600;
-      padding: 0 16px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    nav a {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      text-decoration: none;
-      color: var(--gray-700);
-      font-weight: 500;
-      border-radius: var(--radius-md);
-      transition: all 0.2s;
-    }
-
-    nav a:hover {
-      background: var(--gray-100);
-      color: var(--primary);
-    }
-
-    nav a.active {
-      background: linear-gradient(135deg, rgba(44, 91, 240, 0.12) 0%, rgba(44, 91, 240, 0.08) 100%);
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    .nav-badge {
-      background: var(--danger);
-      color: white;
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-weight: 600;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      height: 80px;
-      background: white;
-      border-bottom: 1px solid var(--gray-200);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .breadcrumb {
-      font-size: 14px;
-      color: var(--gray-500);
-    }
-
-    .completion-badge {
-      background: linear-gradient(135deg, rgba(44, 91, 240, 0.12) 0%, rgba(44, 91, 240, 0.08) 100%);
-      color: var(--primary);
-      padding: 10px 20px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .header-actions button {
-      border: none;
-      padding: 12px 24px;
-      border-radius: var(--radius-md);
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 14px;
-      transition: all 0.2s;
-      font-family: inherit;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-      color: white;
-      box-shadow: 0 8px 20px rgba(44, 91, 240, 0.25);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(44, 91, 240, 0.35);
-    }
-
-    .btn-secondary {
-      background: var(--gray-100);
-      color: var(--gray-700);
-    }
-
-    .btn-secondary:hover {
-      background: var(--gray-200);
-    }
-
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 16px;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .user-profile:hover {
-      background: var(--gray-100);
-    }
-
-    .user-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 600;
-    }
-
-    .content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 40px;
-    }
-
-    .page {
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .page.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .page-header {
-      margin-bottom: 32px;
-    }
-
-    .page-title {
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--gray-900);
-      margin-bottom: 8px;
-    }
-
-    .page-subtitle {
-      font-size: 16px;
-      color: var(--gray-500);
-    }
-
-    .grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .grid-4 {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .card {
-      background: white;
-      border-radius: var(--radius-xl);
-      padding: 28px;
-      box-shadow: var(--shadow-md);
-      transition: all 0.3s;
-    }
-
-    .card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-4px);
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .card-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--gray-900);
-    }
-
-    .stat-summary {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .stat-chip {
-      padding: 20px 24px;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(44, 91, 240, 0.14);
-      background: rgba(44, 91, 240, 0.06);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      box-shadow: none;
-    }
-
-    .stat-chip.success {
-      background: rgba(33, 181, 115, 0.08);
-      border-color: rgba(33, 181, 115, 0.16);
-    }
-
-    .stat-chip.warning {
-      background: rgba(255, 159, 67, 0.08);
-      border-color: rgba(255, 159, 67, 0.16);
-    }
-
-    .stat-chip.danger {
-      background: rgba(240, 79, 82, 0.08);
-      border-color: rgba(240, 79, 82, 0.16);
-    }
-
-    .stat-chip-label {
-      font-size: 13px;
-      color: var(--gray-500);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-    }
-
-    .stat-chip-value {
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--gray-900);
-      line-height: 1.2;
-    }
-
-    .stat-chip-meta {
-      font-size: 13px;
-      color: var(--gray-600);
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .badge-primary {
-      background: rgba(44, 91, 240, 0.12);
-      color: var(--primary);
-    }
-
-    .badge-success {
-      background: rgba(33, 181, 115, 0.12);
-      color: var(--success);
-    }
-
-    .badge-warning {
-      background: rgba(255, 159, 67, 0.12);
-      color: var(--warning);
-    }
-
-    .badge-danger {
-      background: rgba(240, 79, 82, 0.12);
-      color: var(--danger);
-    }
-
-    .alert {
-      padding: 20px 24px;
-      border-radius: var(--radius-lg);
-      display: flex;
-      align-items: start;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .alert-warning {
-      background: rgba(255, 159, 67, 0.12);
-      border-left: 4px solid var(--warning);
-    }
-
-    .alert-info {
-      background: rgba(0, 184, 212, 0.12);
-      border-left: 4px solid var(--info);
-    }
-
-    .alert-icon {
-      font-size: 24px;
-    }
-
-    .alert-content h4 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .alert-content p {
-      font-size: 14px;
-      color: var(--gray-700);
-      line-height: 1.6;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-
-    th, td {
-      padding: 16px;
-      text-align: left;
-      border-bottom: 1px solid var(--gray-200);
-    }
-
-    th {
-      color: var(--gray-500);
-      font-weight: 600;
-      background: var(--gray-50);
-    }
-
-    tbody tr:hover {
-      background: var(--gray-50);
-    }
-
-    .progress-bar {
-      height: 8px;
-      background: var(--gray-200);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
-      border-radius: 999px;
-      transition: width 0.3s ease;
-    }
-
-    .chart-placeholder {
-      height: 300px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(44, 91, 240, 0.08) 0%, rgba(44, 91, 240, 0.02) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 18px;
-    }
-
-    .radar-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .radar-chart {
-      position: relative;
-      width: 320px;
-      max-width: 100%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background:
-        repeating-radial-gradient(circle at center,
-          rgba(44, 91, 240, 0.08) 0,
-          rgba(44, 91, 240, 0.08) 15%,
-          transparent 15%,
-          transparent 30%);
-      overflow: hidden;
-    }
-
-    .radar-chart::before,
-    .radar-chart::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 2px;
-      height: 100%;
-      background: rgba(44, 91, 240, 0.15);
-      transform: translate(-50%, -50%);
-    }
-
-    .radar-chart::after {
-      transform: translate(-50%, -50%) rotate(60deg);
-    }
-
-    .radar-spoke {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 2px;
-      height: 100%;
-      background: rgba(44, 91, 240, 0.15);
-      transform-origin: center;
-    }
-
-    .radar-spoke.rotate-120 {
-      transform: translate(-50%, -50%) rotate(-60deg);
-    }
-
-    .radar-spoke.rotate-180 {
-      transform: translate(-50%, -50%) rotate(120deg);
-    }
-
-    .radar-polygon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 72%;
-      height: 72%;
-      background: rgba(44, 91, 240, 0.2);
-      border: 2px solid rgba(44, 91, 240, 0.65);
-      clip-path: polygon(50% 0%, 88% 30%, 78% 90%, 22% 90%, 12% 30%);
-      transform: translate(-50%, -50%);
-    }
-
-    .radar-polygon::after {
-      content: '';
-      position: absolute;
-      inset: 12%;
-      border: 2px dashed rgba(78, 123, 255, 0.25);
-      border-radius: 50%;
-    }
-
-    .radar-label {
-      position: absolute;
-      font-size: 13px;
-      color: var(--gray-600);
-      font-weight: 600;
-    }
-
-    .radar-label.top {
-      top: -6px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .radar-label.bottom {
-      bottom: -6px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .radar-label.left {
-      left: -6px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .radar-label.right {
-      right: -6px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .radar-label.top-left {
-      top: 20px;
-      left: 24px;
-    }
-
-    .radar-label.top-right {
-      top: 20px;
-      right: 24px;
-    }
-
-    .radar-details {
-      flex: 1;
-      min-width: 220px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .radar-legend {
-      display: flex;
-      gap: 16px;
-      font-size: 13px;
-      color: var(--gray-500);
-      flex-wrap: wrap;
-    }
-
-    .radar-legend span {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(44, 91, 240, 0.6);
-      box-shadow: 0 0 0 4px rgba(44, 91, 240, 0.12);
-    }
-
-    .form-section {
-      background: white;
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 24px;
-    }
-
-    .form-section-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 24px;
-      color: var(--gray-900);
-    }
-
-    .form-section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .form-section-header .form-section-title {
-      margin-bottom: 6px;
-    }
-
-    .form-section-desc {
-      font-size: 14px;
-      color: var(--gray-500);
-      line-height: 1.6;
-    }
-
-    .form-section-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-    }
-
-    .form-section-status {
-      font-size: 12px;
-      color: var(--gray-500);
-    }
-
-    .btn-outline {
-      padding: 12px 20px;
-      border-radius: var(--radius-md);
-      border: 2px solid var(--primary);
-      background: transparent;
-      color: var(--primary);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: inherit;
-    }
-
-    .btn-outline:hover {
-      background: rgba(44, 91, 240, 0.08);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-outline:active {
-      transform: translateY(1px);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .form-field label {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--gray-700);
-    }
-
-    .form-field input,
-    .form-field select,
-    .form-field textarea {
-      padding: 14px 16px;
-      border: 2px solid var(--gray-200);
-      border-radius: var(--radius-md);
-      font-size: 15px;
-      font-family: inherit;
-      transition: all 0.2s;
-    }
-
-    .form-field input:focus,
-    .form-field select:focus,
-    .form-field textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(44, 91, 240, 0.1);
-    }
-
-    .form-field textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .chip-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .chip {
-      padding: 10px 18px;
-      border: 2px solid var(--gray-200);
-      border-radius: var(--radius-md);
-      background: white;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--gray-700);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .chip:hover {
-      border-color: var(--primary);
-      background: rgba(44, 91, 240, 0.05);
-    }
-
-    .chip.active {
-      border-color: var(--primary);
-      background: linear-gradient(135deg, rgba(44, 91, 240, 0.12) 0%, rgba(44, 91, 240, 0.08) 100%);
-      color: var(--primary);
-    }
-
-    .slider-group {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .slider-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .slider-label {
-      min-width: 140px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--gray-700);
-    }
-
-    .slider {
-      flex: 1;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--gray-200);
-      position: relative;
-      cursor: pointer;
-    }
-
-    .slider-track {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
-      border-radius: 999px;
-    }
-
-    .slider-thumb {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: var(--primary);
-      border-radius: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 2px 8px rgba(44, 91, 240, 0.3);
-    }
-
-    .slider-value {
-      min-width: 60px;
-      text-align: right;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .timeline-item {
-      display: flex;
-      gap: 16px;
-      padding: 16px;
-      background: var(--gray-50);
-      border-radius: var(--radius-md);
-      border-left: 4px solid var(--primary);
-    }
-
-    .timeline-time {
-      font-size: 12px;
-      color: var(--gray-500);
-      min-width: 100px;
-    }
-
-    .timeline-content {
-      flex: 1;
-    }
-
-    .timeline-content strong {
-      color: var(--primary);
-    }
-
-    .filter-bar {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .filter-button {
-      padding: 10px 18px;
-      border: 2px solid var(--gray-200);
-      border-radius: var(--radius-md);
-      background: white;
-      color: var(--gray-700);
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: inherit;
-    }
-
-    .filter-button:hover {
-      border-color: var(--primary);
-      background: rgba(44, 91, 240, 0.05);
-    }
-
-    .filter-button.active {
-      border-color: var(--primary);
-      background: var(--primary);
-      color: white;
-    }
-
-    .college-card {
-      background: white;
-      border-radius: var(--radius-xl);
-      padding: 24px;
-      box-shadow: var(--shadow-md);
-      transition: all 0.3s;
-      margin-bottom: 20px;
-    }
-
-    .college-card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
-    }
-
-    .college-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      margin-bottom: 16px;
-    }
-
-    .college-name {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--gray-900);
-      margin-bottom: 8px;
-    }
-
-    .college-meta {
-      display: flex;
-      gap: 12px;
-      font-size: 14px;
-      color: var(--gray-500);
-    }
-
-    .college-score {
-      text-align: right;
-    }
-
-    .score-value {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .score-label {
-      font-size: 12px;
-      color: var(--gray-500);
-    }
-
-    .college-tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .college-probability {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px;
-      background: var(--gray-50);
-      border-radius: var(--radius-md);
-      margin-bottom: 16px;
-    }
-
-    .probability-label {
-      font-size: 14px;
-      color: var(--gray-500);
-    }
-
-    .probability-value {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--success);
-    }
-
-    .college-reason {
-      font-size: 14px;
-      color: var(--gray-700);
-      line-height: 1.6;
-      padding: 16px;
-      background: rgba(44, 91, 240, 0.05);
-      border-radius: var(--radius-md);
-      margin-bottom: 16px;
-    }
-
-    .college-actions {
-      display: flex;
-      gap: 12px;
-    }
-
-    .college-actions button {
-      flex: 1;
-      padding: 12px;
-      border: 2px solid var(--gray-200);
-      border-radius: var(--radius-md);
-      background: white;
-      color: var(--gray-700);
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: inherit;
-    }
-
-    .college-actions button:hover {
-      border-color: var(--primary);
-      background: rgba(44, 91, 240, 0.05);
-      color: var(--primary);
-    }
-
-    @media (max-width: 1200px) {
-      aside {
-        width: 240px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      aside {
-        display: none;
-      }
-
-      header {
-        padding: 0 20px;
-      }
-
-      .content {
-        padding: 24px;
-      }
-
-      .grid-2,
-      .grid-3,
-      .grid-4 {
-        grid-template-columns: 1fr;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stat-summary {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .form-section-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .radar-wrapper {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .radar-details {
-        width: 100%;
-      }
-
-      .form-section-actions {
-        width: 100%;
-        align-items: stretch;
-      }
-
-      .form-section-actions .btn-outline {
-        width: 100%;
-      }
-
-      .header-actions {
-        flex-wrap: wrap;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .stat-summary {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/web.css">
 </head>
+
 <body>
   <!-- 登录注册页面 -->
   <div class="auth-container" id="authContainer">
@@ -1277,7 +67,7 @@
         <div class="logo-icon">🎓</div>
         <span>志愿智通</span>
       </div>
-      
+
       <nav>
         <div class="nav-group">
           <div class="nav-group-title">核心功能</div>
@@ -1287,7 +77,7 @@
             <li><a href="#" data-page="heat">🔥 报考热度</a></li>
           </ul>
         </div>
-        
+
         <div class="nav-group">
           <div class="nav-group-title">数据资料</div>
           <ul>
@@ -1295,7 +85,7 @@
             <li><a href="#" data-page="analysis">📈 成绩分析</a></li>
           </ul>
         </div>
-        
+
         <div class="nav-group">
           <div class="nav-group-title">个人中心</div>
           <ul>
@@ -1442,7 +232,8 @@
                 <span class="badge badge-primary">最近 3 次模考</span>
               </div>
               <div class="chart-placeholder">📈 成绩趋势图表</div>
-              <div style="margin-top: 16px; padding: 16px; background: var(--gray-50); border-radius: var(--radius-md);">
+              <div
+                style="margin-top: 16px; padding: 16px; background: var(--gray-50); border-radius: var(--radius-md);">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                   <span style="font-size: 14px; color: var(--gray-700);">市二模：621 分</span>
                   <span style="font-size: 14px; color: var(--success);">▲ +6</span>
@@ -1507,11 +298,13 @@
                 <div class="radar-details">
                   <div>
                     <h4 style="font-size: 15px; color: var(--gray-700); margin-bottom: 8px;">综合概览</h4>
-                    <p style="font-size: 13px; color: var(--gray-500); line-height: 1.6;">理科科目整体强势，数学与物理高于目标群体 5-6 分；语文仍是短板，建议在阅读与作文模块加量训练。</p>
+                    <p style="font-size: 13px; color: var(--gray-500); line-height: 1.6;">理科科目整体强势，数学与物理高于目标群体 5-6
+                      分；语文仍是短板，建议在阅读与作文模块加量训练。</p>
                   </div>
                   <div class="radar-legend">
                     <span><span class="legend-dot"></span>个人表现</span>
-                    <span><span class="legend-dot" style="background: rgba(124, 134, 152, 0.45); box-shadow: 0 0 0 4px rgba(124, 134, 152, 0.12);"></span>目标群体均值</span>
+                    <span><span class="legend-dot"
+                        style="background: rgba(124, 134, 152, 0.45); box-shadow: 0 0 0 4px rgba(124, 134, 152, 0.12);"></span>目标群体均值</span>
                   </div>
                 </div>
               </div>
@@ -1522,7 +315,8 @@
                     <span style="font-size: 14px; color: var(--success); font-weight: 600;">+6 分优势</span>
                   </div>
                   <div class="progress-bar">
-                    <div class="progress-fill" style="width: 92%; background: linear-gradient(90deg, var(--success) 0%, #2DD284 100%);"></div>
+                    <div class="progress-fill"
+                      style="width: 92%; background: linear-gradient(90deg, var(--success) 0%, #2DD284 100%);"></div>
                   </div>
                   <p style="font-size: 13px; color: var(--gray-500); margin-top: 6px;">比目标群体平均分高，继续保持</p>
                 </div>
@@ -1532,7 +326,8 @@
                     <span style="font-size: 14px; color: var(--danger); font-weight: 600;">-6 分差距</span>
                   </div>
                   <div class="progress-bar">
-                    <div class="progress-fill" style="width: 78%; background: linear-gradient(90deg, var(--warning) 0%, #FFB56B 100%);"></div>
+                    <div class="progress-fill"
+                      style="width: 78%; background: linear-gradient(90deg, var(--warning) 0%, #FFB56B 100%);"></div>
                   </div>
                   <p style="font-size: 13px; color: var(--gray-500); margin-top: 6px;">需要加强作文和阅读理解</p>
                 </div>
@@ -1563,7 +358,8 @@
             <div class="alert-content">
               <h4>推荐算法说明</h4>
               <p><strong>客观数据驱动：</strong>历年录取分数线（权重 40%）+ 生源因素（权重 25%）+ 报考历史（权重 15%）<br>
-              <strong>主观偏好匹配：</strong>目标地区（权重 40%）+ 院校层次（权重 35%）+ 专业方向（权重 25%）</p>
+                <strong>主观偏好匹配：</strong>目标地区（权重 40%）+ 院校层次（权重 35%）+ 专业方向（权重 25%）
+              </p>
             </div>
           </div>
 
@@ -1624,7 +420,7 @@
                 <div class="score-label">匹配指数</div>
               </div>
             </div>
-            
+
             <div class="college-tags">
               <span class="badge badge-success">稳妥</span>
               <span class="badge badge-primary">偏好吻合</span>
@@ -1638,16 +434,19 @@
               </div>
               <div style="flex: 2;">
                 <div class="progress-bar" style="height: 12px;">
-                  <div class="progress-fill" style="width: 68%; background: linear-gradient(90deg, var(--success) 0%, #2DD284 100%);"></div>
+                  <div class="progress-fill"
+                    style="width: 68%; background: linear-gradient(90deg, var(--success) 0%, #2DD284 100%);"></div>
                 </div>
               </div>
             </div>
 
             <div class="college-reason">
-              <strong>推荐理由：</strong>成绩匹配度高（你的628分超过该校近三年平均录取线16分）+ 偏好高度吻合（教育学专业 + 长三角地区）+ 你所在高中历年录取该校成功率达86%，位次要求与你当前位次相符。
+              <strong>推荐理由：</strong>成绩匹配度高（你的628分超过该校近三年平均录取线16分）+ 偏好高度吻合（教育学专业 + 长三角地区）+
+              你所在高中历年录取该校成功率达86%，位次要求与你当前位次相符。
             </div>
 
-            <div style="padding: 16px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 16px;">
+            <div
+              style="padding: 16px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 16px;">
               <div style="font-size: 14px; color: var(--gray-700); margin-bottom: 8px;"><strong>历年录取数据：</strong></div>
               <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-600);">
                 <span>2024年：最低分 612 | 位次 10,800</span>
@@ -1680,7 +479,7 @@
                 <div class="score-label">匹配指数</div>
               </div>
             </div>
-            
+
             <div class="college-tags">
               <span class="badge badge-warning">冲刺</span>
               <span class="badge badge-primary">偏好吻合</span>
@@ -1694,7 +493,8 @@
               </div>
               <div style="flex: 2;">
                 <div class="progress-bar" style="height: 12px;">
-                  <div class="progress-fill" style="width: 54%; background: linear-gradient(90deg, var(--warning) 0%, #FFB56B 100%);"></div>
+                  <div class="progress-fill"
+                    style="width: 54%; background: linear-gradient(90deg, var(--warning) 0%, #FFB56B 100%);"></div>
                 </div>
               </div>
             </div>
@@ -1703,7 +503,8 @@
               <strong>推荐理由：</strong>成绩略有差距（距该校2024年最低录取分差4分），但偏好权重高（教育学相关专业在长三角地区）。建议关注二模成绩和位次变化，若位次提升300-500名，录取概率将显著提高。
             </div>
 
-            <div style="padding: 16px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 16px;">
+            <div
+              style="padding: 16px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 16px;">
               <div style="font-size: 14px; color: var(--gray-700); margin-bottom: 8px;"><strong>历年录取数据：</strong></div>
               <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-600);">
                 <span>2024年：最低分 632 | 位次 9,200</span>
@@ -1748,7 +549,9 @@
               </div>
               <div style="flex: 2;">
                 <div class="progress-bar" style="height: 12px;">
-                  <div class="progress-fill" style="width: 62%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);"></div>
+                  <div class="progress-fill"
+                    style="width: 62%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);">
+                  </div>
                 </div>
               </div>
             </div>
@@ -1757,7 +560,8 @@
               <strong>推荐理由：</strong>当前628分高于近三年平均录取线 8 分，匹配指数 90，适合作为稳妥备选并结合项目调研深入了解院校特色。
             </div>
 
-            <div style="padding: 16px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 16px;">
+            <div
+              style="padding: 16px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 16px;">
               <div style="font-size: 14px; color: var(--gray-700); margin-bottom: 8px;"><strong>历年录取数据：</strong></div>
               <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-600);">
                 <span>2024年：最低分 620 | 位次 11,600</span>
@@ -1790,7 +594,7 @@
                 <div class="score-label">匹配指数</div>
               </div>
             </div>
-            
+
             <div class="college-tags">
               <span class="badge badge-success">保底</span>
               <span class="badge badge-success">安全选择</span>
@@ -1804,7 +608,8 @@
               </div>
               <div style="flex: 2;">
                 <div class="progress-bar" style="height: 12px;">
-                  <div class="progress-fill" style="width: 92%; background: linear-gradient(90deg, var(--success) 0%, #2DD284 100%);"></div>
+                  <div class="progress-fill"
+                    style="width: 92%; background: linear-gradient(90deg, var(--success) 0%, #2DD284 100%);"></div>
                 </div>
               </div>
             </div>
@@ -1813,7 +618,8 @@
               <strong>推荐理由：</strong>成绩优势明显（你的628分超过该校近三年平均录取线28分）+ 你所在高中往届学生录取该校成功率达92%，位次要求远低于你当前位次。适合作为保底院校，确保录取安全。
             </div>
 
-            <div style="padding: 16px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 16px;">
+            <div
+              style="padding: 16px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 16px;">
               <div style="font-size: 14px; color: var(--gray-700); margin-bottom: 8px;"><strong>历年录取数据：</strong></div>
               <div style="display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-600);">
                 <span>2024年：最低分 598 | 位次 18,500</span>
@@ -2013,7 +819,8 @@
                   <td><span class="badge badge-primary">985</span></td>
                   <td>320 人</td>
                   <td>
-                    <button style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
+                    <button
+                      style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
                   </td>
                 </tr>
                 <tr>
@@ -2023,7 +830,8 @@
                   <td><span class="badge badge-primary">985</span></td>
                   <td>520 人</td>
                   <td>
-                    <button style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
+                    <button
+                      style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
                   </td>
                 </tr>
                 <tr>
@@ -2033,7 +841,8 @@
                   <td><span class="badge badge-primary">985</span></td>
                   <td>480 人</td>
                   <td>
-                    <button style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
+                    <button
+                      style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
                   </td>
                 </tr>
                 <tr>
@@ -2043,7 +852,8 @@
                   <td><span class="badge badge-primary">985</span></td>
                   <td>430 人</td>
                   <td>
-                    <button style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
+                    <button
+                      style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
                   </td>
                 </tr>
                 <tr>
@@ -2053,7 +863,8 @@
                   <td><span class="badge badge-primary">985</span></td>
                   <td>380 人</td>
                   <td>
-                    <button style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
+                    <button
+                      style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
                   </td>
                 </tr>
                 <tr>
@@ -2063,7 +874,8 @@
                   <td><span class="badge badge-primary">985</span></td>
                   <td>450 人</td>
                   <td>
-                    <button style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
+                    <button
+                      style="padding: 6px 12px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px;">查看详情</button>
                   </td>
                 </tr>
               </tbody>
@@ -2079,12 +891,14 @@
               <div style="padding: 20px; background: var(--gray-50); border-radius: var(--radius-md);">
                 <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">对比 1：师范类院校</h4>
                 <p style="font-size: 14px; color: var(--gray-700); margin-bottom: 12px;">华东师范大学 vs. 南京师范大学</p>
-                <button style="padding: 8px 16px; border: none; background: var(--primary); color: white; border-radius: 8px; cursor: pointer; font-size: 14px;">查看对比详情</button>
+                <button
+                  style="padding: 8px 16px; border: none; background: var(--primary); color: white; border-radius: 8px; cursor: pointer; font-size: 14px;">查看对比详情</button>
               </div>
               <div style="padding: 20px; background: var(--gray-50); border-radius: var(--radius-md);">
                 <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">对比 2：综合类院校</h4>
                 <p style="font-size: 14px; color: var(--gray-700); margin-bottom: 12px;">浙江大学 vs. 上海交通大学</p>
-                <button style="padding: 8px 16px; border: none; background: var(--primary); color: white; border-radius: 8px; cursor: pointer; font-size: 14px;">查看对比详情</button>
+                <button
+                  style="padding: 8px 16px; border: none; background: var(--primary); color: white; border-radius: 8px; cursor: pointer; font-size: 14px;">查看对比详情</button>
               </div>
             </div>
           </div>
@@ -2135,11 +949,13 @@
               <div class="radar-details">
                 <div>
                   <h4 style="font-size: 15px; color: var(--gray-700); margin-bottom: 8px;">能力雷达</h4>
-                  <p style="font-size: 13px; color: var(--gray-500); line-height: 1.6;">理工科得分呈尖峰分布，语文与综合科目形成短板。调整复习时间至「语文阅读+选考综合」可平衡整体形状。</p>
+                  <p style="font-size: 13px; color: var(--gray-500); line-height: 1.6;">
+                    理工科得分呈尖峰分布，语文与综合科目形成短板。调整复习时间至「语文阅读+选考综合」可平衡整体形状。</p>
                 </div>
                 <div class="radar-legend">
                   <span><span class="legend-dot"></span>个人表现</span>
-                  <span><span class="legend-dot" style="background: rgba(124, 134, 152, 0.45); box-shadow: 0 0 0 4px rgba(124, 134, 152, 0.12);"></span>目标群体均值</span>
+                  <span><span class="legend-dot"
+                      style="background: rgba(124, 134, 152, 0.45); box-shadow: 0 0 0 4px rgba(124, 134, 152, 0.12);"></span>目标群体均值</span>
                 </div>
               </div>
             </div>
@@ -2214,7 +1030,8 @@
                 <span class="badge badge-primary">最近 5 次考试</span>
               </div>
               <div class="chart-placeholder">📊 成绩变化趋势折线图</div>
-              <div style="margin-top: 16px; padding: 16px; background: var(--gray-50); border-radius: var(--radius-md);">
+              <div
+                style="margin-top: 16px; padding: 16px; background: var(--gray-50); border-radius: var(--radius-md);">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                   <span style="font-size: 14px;">市二模 (最新)</span>
                   <span style="font-size: 14px; font-weight: 600;">621 分</span>
@@ -2493,19 +1310,23 @@
                 <h3 class="card-title">账户信息</h3>
               </div>
               <div style="display: flex; flex-direction: column; gap: 16px;">
-                <div style="display: flex; justify-content: space-between; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
+                <div
+                  style="display: flex; justify-content: space-between; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
                   <span style="font-size: 14px; color: var(--gray-500);">姓名</span>
                   <span style="font-size: 14px; font-weight: 600;">李晓同</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
+                <div
+                  style="display: flex; justify-content: space-between; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
                   <span style="font-size: 14px; color: var(--gray-500);">账号</span>
                   <span style="font-size: 14px; font-weight: 600;">lixiaotong2026</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
+                <div
+                  style="display: flex; justify-content: space-between; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
                   <span style="font-size: 14px; color: var(--gray-500);">所在省份</span>
                   <span style="font-size: 14px; font-weight: 600;">浙江省</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
+                <div
+                  style="display: flex; justify-content: space-between; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
                   <span style="font-size: 14px; color: var(--gray-500);">毕业高中</span>
                   <span style="font-size: 14px; font-weight: 600;">杭州市第二中学</span>
                 </div>
@@ -2548,7 +1369,8 @@
             <div class="card-header">
               <h3 class="card-title">共享设置</h3>
             </div>
-            <div style="padding: 20px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 16px;">
+            <div
+              style="padding: 20px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 16px;">
               <p style="font-size: 15px; color: var(--gray-700); margin-bottom: 16px;">
                 已与<strong>家长（李女士）</strong>共享，<strong>教师（张老师）</strong>可评论。
               </p>
@@ -2558,11 +1380,14 @@
                 <div class="chip">管理权限</div>
               </div>
             </div>
-            <div style="padding: 16px; background: rgba(0, 184, 212, 0.08); border-radius: var(--radius-md); border-left: 4px solid var(--info);">
+            <div
+              style="padding: 16px; background: rgba(0, 184, 212, 0.08); border-radius: var(--radius-md); border-left: 4px solid var(--info);">
               <p style="font-size: 14px; color: var(--gray-700);">
-                <strong>共享链接：</strong><code style="background: white; padding: 4px 8px; border-radius: 4px; font-family: monospace;">https://share.zhiyuan.com/abc123</code>
+                <strong>共享链接：</strong><code
+                  style="background: white; padding: 4px 8px; border-radius: 4px; font-family: monospace;">https://share.zhiyuan.com/abc123</code>
                 <br>
-                <span style="font-size: 13px; color: var(--gray-600); margin-top: 4px; display: inline-block;">有效期：7 天</span>
+                <span style="font-size: 13px; color: var(--gray-600); margin-top: 4px; display: inline-block;">有效期：7
+                  天</span>
               </p>
             </div>
           </div>
@@ -2576,7 +1401,8 @@
                 <span style="font-size: 14px;">热度预警通知</span>
                 <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--primary);">
               </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
+              <div
+                style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
                 <span style="font-size: 14px;">成绩更新提醒</span>
                 <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--primary);">
               </div>
@@ -2584,7 +1410,8 @@
                 <span style="font-size: 14px;">推荐院校变化通知</span>
                 <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--primary);">
               </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
+              <div
+                style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md);">
                 <span style="font-size: 14px;">协作者评论通知</span>
                 <input type="checkbox" style="width: 20px; height: 20px; accent-color: var(--primary);">
               </div>
@@ -2594,99 +1421,7 @@
       </div>
     </main>
   </div>
-
-  <script>
-    // 页面切换逻辑
-    const authContainer = document.getElementById('authContainer');
-    const appContainer = document.getElementById('appContainer');
-    const authTabs = document.querySelectorAll('.auth-tab');
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const navLinks = document.querySelectorAll('nav a');
-    const pages = document.querySelectorAll('.page');
-    const breadcrumb = document.querySelector('.breadcrumb');
-    const btnImportScore = document.getElementById('btnImportScore');
-    const btnGenerateReport = document.getElementById('btnGenerateReport');
-
-    // 认证标签切换
-    authTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        authTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        
-        if (tab.dataset.tab === 'login') {
-          loginForm.style.display = 'flex';
-          registerForm.style.display = 'none';
-        } else {
-          loginForm.style.display = 'none';
-          registerForm.style.display = 'flex';
-        }
-      });
-    });
-
-    // 登录提交
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      authContainer.style.display = 'none';
-      appContainer.classList.add('active');
-    });
-
-    // 注册提交
-    registerForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('注册成功！请登录');
-      authTabs[0].click();
-    });
-
-    // 导航切换
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        
-        const pageName = link.dataset.page;
-        pages.forEach(page => {
-          page.classList.remove('active');
-          if (page.dataset.page === pageName) {
-            page.classList.add('active');
-          }
-        });
-
-        // 更新面包屑
-        const pageTitle = link.textContent.trim();
-        breadcrumb.textContent = `首页 / ${pageTitle}`;
-      });
-    });
-
-    // 顶部按钮功能
-    btnImportScore.addEventListener('click', () => {
-      const infoLink = document.querySelector('nav a[data-page="info"]');
-      if (infoLink) {
-        infoLink.click();
-      }
-    });
-
-    btnGenerateReport.addEventListener('click', () => {
-      const recommendLink = document.querySelector('nav a[data-page="recommend"]');
-      if (recommendLink) {
-        recommendLink.click();
-      }
-    });
-
-    // 选科芯片交互
-    document.querySelectorAll('.chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        chip.classList.toggle('active');
-      });
-    });
-
-    // 筛选按钮交互
-    document.querySelectorAll('.filter-button').forEach(button => {
-      button.addEventListener('click', () => {
-        button.classList.toggle('active');
-      });
-    });
-  </script>
+  <script src="js/web.js"></script> 
 </body>
+
 </html>
