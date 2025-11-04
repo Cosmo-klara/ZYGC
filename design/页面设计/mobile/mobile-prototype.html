@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -8,9 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="css/mobile.css">
-</head>
 
+</head>
 <body>
   <div class="phone-shell">
     <div class="phone-screen">
@@ -88,9 +88,9 @@
                 <span class="stat-chip-meta">偏好匹配完成</span>
               </div>
               <div class="stat-chip warning">
-                <span class="stat-chip-label">热度预警</span>
-                <span class="stat-chip-value">2</span>
-                <span class="stat-chip-meta">本周新增提醒</span>
+                <span class="stat-chip-label">目标院校</span>
+                <span class="stat-chip-value">5 所</span>
+                <span class="stat-chip-meta">已添加追踪</span>
               </div>
               <div class="stat-chip danger">
                 <span class="stat-chip-label">差距分析</span>
@@ -137,10 +137,10 @@
             </section>
 
             <section class="message-banner">
-              <span class="message-banner-icon">⚠️</span>
+              <span class="message-banner-icon">ℹ️</span>
               <div>
-                <strong>报考热度提醒</strong><br>
-                复旦大学教育学专业热度较去年同期上涨 18%，建议新增 1-2 所稳妥备选院校。
+                <strong>系统提示</strong><br>
+                已为您匹配 28 所院校，建议合理分配"冲刺"、"稳妥"、"保底"院校比例，确保志愿填报安全。
               </div>
             </section>
 
@@ -206,7 +206,7 @@
             <section class="card">
               <div class="card-header">
                 <h2 class="section-title">单科分析</h2>
-                <span class="badge">与目标群体对比</span>
+                <span class="badge">个人能力评估</span>
               </div>
               <div class="radar-wrapper">
                 <div class="radar-chart">
@@ -222,42 +222,37 @@
                 </div>
                 <div class="radar-legend">
                   <span><span class="legend-dot"></span>个人表现</span>
-                  <span><span class="legend-dot"
-                      style="background: rgba(124, 134, 152, 0.45); box-shadow: 0 0 0 3px rgba(124, 134, 152, 0.12);"></span>目标群体均值</span>
+                  <span><span class="legend-dot" style="background: rgba(124, 134, 152, 0.45); box-shadow: 0 0 0 3px rgba(124, 134, 152, 0.12);"></span>满分参考</span>
                 </div>
               </div>
               <div style="display: flex; flex-direction: column; gap: 16px;">
                 <div>
                   <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                     <span style="font-weight: 600; font-size: 14px;">数学</span>
-                    <span style="color: var(--success); font-weight: 600; font-size: 14px;">+6 分</span>
+                    <span style="color: var(--success); font-weight: 600; font-size: 14px;">92%</span>
                   </div>
                   <div class="progress-bar">
-                    <div class="progress-fill"
-                      style="width: 92%; background: linear-gradient(90deg, var(--success), #2DD284);"></div>
+                    <div class="progress-fill" style="width: 92%; background: linear-gradient(90deg, var(--success), #2DD284);"></div>
                   </div>
                   <p class="subtitle" style="margin-top: 6px;">强项，继续保持</p>
                 </div>
                 <div>
                   <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                     <span style="font-weight: 600; font-size: 14px;">语文</span>
-                    <span style="color: var(--danger); font-weight: 600; font-size: 14px;">-6 分</span>
+                    <span style="color: var(--warning); font-weight: 600; font-size: 14px;">81%</span>
                   </div>
                   <div class="progress-bar">
-                    <div class="progress-fill"
-                      style="width: 78%; background: linear-gradient(90deg, var(--warning), #FFB56B);"></div>
+                    <div class="progress-fill" style="width: 81%; background: linear-gradient(90deg, var(--warning), #FFB56B);"></div>
                   </div>
                   <p class="subtitle" style="margin-top: 6px;">需要加强作文和阅读</p>
                 </div>
                 <div>
                   <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                     <span style="font-weight: 600; font-size: 14px;">英语</span>
-                    <span style="color: var(--success); font-weight: 600; font-size: 14px;">+2 分</span>
+                    <span style="color: var(--success); font-weight: 600; font-size: 14px;">91%</span>
                   </div>
                   <div class="progress-bar">
-                    <div class="progress-fill"
-                      style="width: 90%; background: linear-gradient(90deg, var(--primary), var(--primary-light));">
-                    </div>
+                    <div class="progress-fill" style="width: 91%; background: linear-gradient(90deg, var(--primary), var(--primary-light));"></div>
                   </div>
                   <p class="subtitle" style="margin-top: 6px;">保持优势</p>
                 </div>
@@ -315,8 +310,7 @@
               </div>
               <div style="padding: 14px; background: var(--gray-100); border-radius: var(--radius-sm);">
                 <div class="progress-bar" style="height: 10px; margin-bottom: 8px;">
-                  <div class="progress-fill"
-                    style="width: 68%; background: linear-gradient(90deg, var(--success), #2DD284);"></div>
+                  <div class="progress-fill" style="width: 68%; background: linear-gradient(90deg, var(--success), #2DD284);"></div>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-500);">
                   <span>历年最低分：612/608/606</span>
@@ -354,8 +348,7 @@
               </div>
               <div style="padding: 14px; background: var(--gray-100); border-radius: var(--radius-sm);">
                 <div class="progress-bar" style="height: 10px; margin-bottom: 8px;">
-                  <div class="progress-fill"
-                    style="width: 54%; background: linear-gradient(90deg, var(--warning), #FFB56B);"></div>
+                  <div class="progress-fill" style="width: 54%; background: linear-gradient(90deg, var(--warning), #FFB56B);"></div>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-500);">
                   <span>历年最低分：632/628/627</span>
@@ -393,8 +386,7 @@
               </div>
               <div style="padding: 14px; background: var(--gray-100); border-radius: var(--radius-sm);">
                 <div class="progress-bar" style="height: 10px; margin-bottom: 8px;">
-                  <div class="progress-fill"
-                    style="width: 62%; background: linear-gradient(90deg, var(--primary), var(--primary-light));"></div>
+                  <div class="progress-fill" style="width: 62%; background: linear-gradient(90deg, var(--primary), var(--primary-light));"></div>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-500);">
                   <span>历年最低分：620/618/615</span>
@@ -432,8 +424,7 @@
               </div>
               <div style="padding: 14px; background: var(--gray-100); border-radius: var(--radius-sm);">
                 <div class="progress-bar" style="height: 10px; margin-bottom: 8px;">
-                  <div class="progress-fill"
-                    style="width: 92%; background: linear-gradient(90deg, var(--success), #2DD284);"></div>
+                  <div class="progress-fill" style="width: 92%; background: linear-gradient(90deg, var(--success), #2DD284);"></div>
                 </div>
                 <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-500);">
                   <span>历年最低分：598/595/593</span>
@@ -577,10 +568,9 @@
                 </div>
               </div>
 
-              <div
-                style="padding: 14px; background: rgba(0, 184, 212, 0.1); border-radius: var(--radius-sm); border-left: 3px solid var(--info);">
+              <div style="padding: 14px; background: rgba(0, 184, 212, 0.1); border-radius: var(--radius-sm); border-left: 3px solid var(--info);">
                 <p class="form-note" style="color: var(--info);">
-                  完成信息后可解锁模拟志愿、志愿热度预警、录取概率分析等高级功能。
+                  完成信息后可解锁智能推荐、院校对比、录取概率分析等功能。
                 </p>
               </div>
 
@@ -645,8 +635,7 @@
                     <span>⭐ 985/211</span>
                   </div>
                 </div>
-                <button
-                  style="padding: 8px 16px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 8px; font-size: 13px; font-weight: 600;">详情</button>
+                <button style="padding: 8px 16px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 8px; font-size: 13px; font-weight: 600;">详情</button>
               </div>
               <div class="data-table">
                 <div class="data-row">
@@ -674,8 +663,7 @@
                     <span>⭐ 985/211</span>
                   </div>
                 </div>
-                <button
-                  style="padding: 8px 16px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 8px; font-size: 13px; font-weight: 600;">详情</button>
+                <button style="padding: 8px 16px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 8px; font-size: 13px; font-weight: 600;">详情</button>
               </div>
               <div class="data-table">
                 <div class="data-row">
@@ -703,8 +691,7 @@
                     <span>⭐ 985/211</span>
                   </div>
                 </div>
-                <button
-                  style="padding: 8px 16px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 8px; font-size: 13px; font-weight: 600;">详情</button>
+                <button style="padding: 8px 16px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 8px; font-size: 13px; font-weight: 600;">详情</button>
               </div>
               <div class="data-table">
                 <div class="data-row">
@@ -732,8 +719,7 @@
                     <span>⭐ 985/211</span>
                   </div>
                 </div>
-                <button
-                  style="padding: 8px 16px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 8px; font-size: 13px; font-weight: 600;">详情</button>
+                <button style="padding: 8px 16px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 8px; font-size: 13px; font-weight: 600;">详情</button>
               </div>
               <div class="data-table">
                 <div class="data-row">
@@ -760,14 +746,12 @@
                 <div style="padding: 16px; background: var(--gray-100); border-radius: var(--radius-md);">
                   <div style="font-weight: 600; margin-bottom: 8px;">师范类院校对比</div>
                   <div style="font-size: 14px; color: var(--gray-700); margin-bottom: 12px;">华东师范大学 vs 南京师范大学</div>
-                  <button
-                    style="width: 100%; padding: 10px; border: none; background: var(--primary); color: white; border-radius: 8px; font-weight: 600; font-size: 14px;">查看详情</button>
+                  <button style="width: 100%; padding: 10px; border: none; background: var(--primary); color: white; border-radius: 8px; font-weight: 600; font-size: 14px;">查看详情</button>
                 </div>
                 <div style="padding: 16px; background: var(--gray-100); border-radius: var(--radius-md);">
                   <div style="font-weight: 600; margin-bottom: 8px;">综合类院校对比</div>
                   <div style="font-size: 14px; color: var(--gray-700); margin-bottom: 12px;">浙江大学 vs 上海交通大学</div>
-                  <button
-                    style="width: 100%; padding: 10px; border: none; background: var(--primary); color: white; border-radius: 8px; font-weight: 600; font-size: 14px;">查看详情</button>
+                  <button style="width: 100%; padding: 10px; border: none; background: var(--primary); color: white; border-radius: 8px; font-weight: 600; font-size: 14px;">查看详情</button>
                 </div>
               </div>
             </section>
@@ -777,9 +761,7 @@
           <div class="mobile-page" data-tab="profile">
             <section class="card">
               <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
-                <div
-                  style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; font-weight: 700;">
-                  李</div>
+                <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; font-weight: 700;">李</div>
                 <div>
                   <h2 class="section-title">李晓同</h2>
                   <p class="subtitle">浙江省 · 杭州市第二中学</p>
@@ -812,8 +794,7 @@
                   <span class="data-value">学生</span>
                 </div>
               </div>
-              <button
-                style="width: 100%; padding: 14px; border: 2px solid var(--primary); background: white; color: var(--primary); border-radius: var(--radius-md); font-weight: 600; font-size: 15px; margin-top: 8px;">修改基本信息</button>
+              <button style="width: 100%; padding: 14px; border: 2px solid var(--primary); background: white; color: var(--primary); border-radius: var(--radius-md); font-weight: 600; font-size: 15px; margin-top: 8px;">修改基本信息</button>
             </section>
 
             <section class="card">
@@ -841,18 +822,15 @@
                   <p class="subtitle">教育学 / 人文社科</p>
                 </div>
               </div>
-              <button
-                style="width: 100%; padding: 14px; border: none; background: var(--primary); color: white; border-radius: var(--radius-md); font-weight: 600; font-size: 15px; margin-top: 8px;">调整偏好权重</button>
+              <button style="width: 100%; padding: 14px; border: none; background: var(--primary); color: white; border-radius: var(--radius-md); font-weight: 600; font-size: 15px; margin-top: 8px;">调整偏好权重</button>
             </section>
 
             <section class="card">
               <h2 class="section-title" style="margin-bottom: 12px;">共享设置</h2>
               <p class="subtitle" style="margin-bottom: 16px;">已与家长（李女士）共享，教师（张老师）可评论</p>
-              <div
-                style="padding: 16px; background: rgba(0, 184, 212, 0.1); border-radius: var(--radius-md); border-left: 3px solid var(--info); margin-bottom: 16px;">
+              <div style="padding: 16px; background: rgba(0, 184, 212, 0.1); border-radius: var(--radius-md); border-left: 3px solid var(--info); margin-bottom: 16px;">
                 <div style="font-size: 13px; color: var(--gray-700); margin-bottom: 8px;"><strong>共享链接</strong></div>
-                <div style="font-family: monospace; font-size: 12px; color: var(--info); word-break: break-all;">
-                  https://share.zhiyuan.com/abc123</div>
+                <div style="font-family: monospace; font-size: 12px; color: var(--info); word-break: break-all;">https://share.zhiyuan.com/abc123</div>
                 <div style="font-size: 12px; color: var(--gray-500); margin-top: 6px;">有效期：7 天</div>
               </div>
               <div class="chips">
@@ -865,23 +843,19 @@
             <section class="card">
               <h2 class="section-title" style="margin-bottom: 12px;">系统通知</h2>
               <div style="display: flex; flex-direction: column; gap: 12px;">
-                <div
-                  style="display: flex; justify-content: space-between; align-items: center; padding: 14px; background: var(--gray-100); border-radius: var(--radius-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px; background: var(--gray-100); border-radius: var(--radius-md);">
                   <span style="font-size: 14px;">热度预警通知</span>
                   <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--primary);">
                 </div>
-                <div
-                  style="display: flex; justify-content: space-between; align-items: center; padding: 14px; background: var(--gray-100); border-radius: var(--radius-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px; background: var(--gray-100); border-radius: var(--radius-md);">
                   <span style="font-size: 14px;">成绩更新提醒</span>
                   <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--primary);">
                 </div>
-                <div
-                  style="display: flex; justify-content: space-between; align-items: center; padding: 14px; background: var(--gray-100); border-radius: var(--radius-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px; background: var(--gray-100); border-radius: var(--radius-md);">
                   <span style="font-size: 14px;">推荐院校变化</span>
                   <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--primary);">
                 </div>
-                <div
-                  style="display: flex; justify-content: space-between; align-items: center; padding: 14px; background: var(--gray-100); border-radius: var(--radius-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px; background: var(--gray-100); border-radius: var(--radius-md);">
                   <span style="font-size: 14px;">协作者评论</span>
                   <input type="checkbox" style="width: 20px; height: 20px; accent-color: var(--primary);">
                 </div>
@@ -889,8 +863,7 @@
             </section>
 
             <section style="padding: 20px; text-align: center;">
-              <button
-                style="padding: 14px 32px; border: 2px solid var(--danger); background: white; color: var(--danger); border-radius: var(--radius-md); font-weight: 600; font-size: 15px;">退出登录</button>
+              <button style="padding: 14px 32px; border: 2px solid var(--danger); background: white; color: var(--danger); border-radius: var(--radius-md); font-weight: 600; font-size: 15px;">退出登录</button>
             </section>
           </div>
         </div>
@@ -925,5 +898,4 @@
 
   <script src="js/mobile.js"></script>
 </body>
-
 </html>

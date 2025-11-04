@@ -215,7 +215,7 @@ body {
 .page-content {
     flex: 1;
     overflow-y: auto;
-    background: linear-gradient(180deg, rgba(44, 91, 240, 0.08) 0%, rgba(255, 255, 255, 1) 30%);
+    background: linear-gradient(180deg, rgba(44, 91, 240, 0.08) 0%, rgba(255,255,255,1) 30%);
     padding: 24px 20px 120px;
 }
 
@@ -231,15 +231,8 @@ body {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .section-title {
@@ -376,7 +369,7 @@ body {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: conic-gradient(var(--success) 245deg, rgba(33, 181, 115, 0.15) 0);
+    background: conic-gradient(var(--success) 245deg, rgba(33,181,115,0.15) 0);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -486,19 +479,19 @@ body {
     flex-shrink: 0;
 }
 
-.status-safe {
-    background: rgba(33, 181, 115, 0.15);
-    color: var(--success);
+.status-safe { 
+    background: rgba(33,181,115,0.15); 
+    color: var(--success); 
 }
 
-.status-steady {
-    background: rgba(44, 91, 240, 0.12);
-    color: var(--primary);
+.status-steady { 
+    background: rgba(44,91,240,0.12); 
+    color: var(--primary); 
 }
 
-.status-risk {
-    background: rgba(240, 79, 82, 0.15);
-    color: var(--danger);
+.status-risk { 
+    background: rgba(240,79,82,0.15); 
+    color: var(--danger); 
 }
 
 /* 警告横幅 */
@@ -554,11 +547,11 @@ body {
     aspect-ratio: 1;
     border-radius: 50%;
     background:
-        repeating-radial-gradient(circle at center,
-            rgba(44, 91, 240, 0.08) 0,
-            rgba(44, 91, 240, 0.08) 16%,
-            transparent 16%,
-            transparent 32%);
+    repeating-radial-gradient(circle at center,
+        rgba(44, 91, 240, 0.08) 0,
+        rgba(44, 91, 240, 0.08) 16%,
+        transparent 16%,
+        transparent 32%);
     overflow: hidden;
 }
 
@@ -1120,7 +1113,7 @@ body {
     gap: 3px;
     padding: 8px 6px;
     border-radius: 14px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255,255,255,0.6);
     font-size: 11px;
     border: none;
     background: transparent;
@@ -1176,20 +1169,20 @@ body {
 /* 响应式调整 */
 @media (max-width: 390px) {
     .phone-shell {
-        border-radius: 0;
-        padding: 0;
-        max-width: 100%;
+    border-radius: 0;
+    padding: 0;
+    max-width: 100%;
     }
 
     .phone-screen {
-        border-radius: 0;
+    border-radius: 0;
     }
 
     body {
-        padding: 0;
+    padding: 0;
     }
 
     .stat-chip {
-        flex: 1 1 100%;
+    flex: 1 1 100%;
     }
 }
