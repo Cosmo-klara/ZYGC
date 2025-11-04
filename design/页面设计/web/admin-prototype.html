@@ -22,7 +22,6 @@
         <div class="nav-group-title">总览</div>
         <ul>
           <li><a href="#" class="active" data-page="dashboard" data-label="监控仪表盘">监控仪表盘</a></li>
-          <li><a href="#" data-page="reports" data-label="报表中心">报表中心</a></li>
         </ul>
       </div>
       <div>
@@ -37,9 +36,7 @@
       <div>
         <div class="nav-group-title">算法与配置</div>
         <ul>
-          <li><a href="#" data-page="model" data-label="推荐模型">推荐模型</a></li>
           <li><a href="#" data-page="weights" data-label="权重策略">权重策略</a></li>
-          <li><a href="#" data-page="release" data-label="灰度发布">灰度发布</a></li>
         </ul>
       </div>
       <div>
@@ -68,27 +65,27 @@
 
     <div class="admin-page active" data-page="dashboard">
       <div class="panel full" id="metrics-overview">
-        <h2>关键指标总览 <span>过去 24 小时</span></h2>
+        <h2>关键指标总览</h2>
         <div class="metrics">
           <div class="metric-card">
             <small>成功导入任务</small>
             <strong>18</strong>
-            <span class="metric-trend">+12% vs. 昨日</span>
+            <span class="metric-trend">本月累计</span>
           </div>
           <div class="metric-card">
-            <small>模型版本</small>
-            <strong>v1.7.2</strong>
-            <span class="metric-trend neutral">灰度发布至 35% 用户</span>
+            <small>系统版本</small>
+            <strong>v1.0</strong>
+            <span class="metric-trend neutral">稳定运行中</span>
           </div>
           <div class="metric-card">
-            <small>异常告警</small>
+            <small>数据异常</small>
             <strong>3</strong>
             <span class="metric-trend danger">2 条待处理</span>
           </div>
           <div class="metric-card">
-            <small>活跃考生</small>
-            <strong>12,480</strong>
-            <span class="metric-trend">+6.4% 新增</span>
+            <small>注册用户</small>
+            <strong>1,248</strong>
+            <span class="metric-trend">累计注册</span>
           </div>
         </div>
       </div>
@@ -160,34 +157,34 @@
         </div>
       </div>
 
-      <div class="panel full" id="model-console">
-        <h2>模型与策略控制台 <span>当前灰度：35%</span></h2>
+            <div class="panel full" id="weight-console">
+        <h2>权重策略配置</h2>
         <div class="split-grid">
           <div>
-            <div class="chart-placeholder">模型效果对比图占位</div>
-            <p style="font-size:13px; color: var(--gray-500);">展示新老模型在推荐命中率、点击率、用户满意度维度的对比，支持切换时间范围。</p>
+            <div class="chart-placeholder">权重分配可视化</div>
+            <p style="font-size:13px; color: var(--gray-500);">展示各项推荐因子的权重配置情况，包括位次、地区、专业、院校层次等。</p>
           </div>
           <div class="list">
             <div class="list-item">
               <div>
-                <strong>权重策略</strong>
-                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">偏好权重 40%，成绩匹配 45%，热度调节 15%</p>
+                <strong>位次匹配权重</strong>
+                <small>当前值: 50%</small>
               </div>
               <button class="btn-outline">调整</button>
             </div>
             <div class="list-item">
               <div>
-                <strong>灰度发布</strong>
-                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">当前面向 3 省考生；下一阶段目标 60%</p>
+                <strong>地区偏好权重</strong>
+                <small>当前值: 20%</small>
               </div>
-              <button class="btn-outline">配置</button>
+              <button class="btn-outline">调整</button>
             </div>
             <div class="list-item">
               <div>
-                <strong>回滚策略</strong>
-                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">若命中率下降 >5% 触发自动回滚</p>
+                <strong>专业匹配权重</strong>
+                <small>当前值: 15%</small>
               </div>
-              <button class="btn-outline">查看日志</button>
+              <button class="btn-outline">调整</button>
             </div>
           </div>
         </div>
@@ -232,35 +229,6 @@
         <div class="actions-row">
           <button class="btn-outline">查看全部反馈</button>
           <button class="btn-outline">发布新公告</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="admin-page" data-page="reports">
-      <div class="panel full">
-        <h2>报表中心 <span>导出与订阅</span></h2>
-        <div class="list">
-          <div class="list-item">
-            <div>
-              <strong>院校热度日报</strong>
-              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">包含 TOP20 热度院校与风险提示，支持每日邮件订阅。</p>
-            </div>
-            <button class="btn-outline">导出 CSV</button>
-          </div>
-          <div class="list-item">
-            <div>
-              <strong>考生活跃周报</strong>
-              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">按省份拆分新增/流失用户，支持自动推送给省级管理员。</p>
-            </div>
-            <button class="btn-outline">订阅</button>
-          </div>
-          <div class="list-item">
-            <div>
-              <strong>模型表现分析</strong>
-              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">包含命中率、点击率、满意度三项指标的历史趋势。</p>
-            </div>
-            <button class="btn-outline">查看详情</button>
-          </div>
         </div>
       </div>
     </div>
@@ -336,17 +304,17 @@
 
     <div class="admin-page" data-page="exam-info">
       <div class="panel full">
-        <h2>高考信息完善总览 <span>本周状态</span></h2>
+        <h2>考生信息管理</h2>
         <div class="metrics">
           <div class="metric-card">
-            <small>今日新增提交</small>
-            <strong>128</strong>
-            <span class="metric-trend">+18% vs. 昨日</span>
+            <small>已注册考生</small>
+            <strong>1,248</strong>
+            <span class="metric-trend">本月新增 128</span>
           </div>
           <div class="metric-card">
-            <small>审核待处理</small>
+            <small>信息待完善</small>
             <strong>42</strong>
-            <span class="metric-trend danger">优先处理 12 条</span>
+            <span class="metric-trend danger">需提醒</span>
           </div>
           <div class="metric-card">
             <small>信息完整率</small>
@@ -354,9 +322,9 @@
             <span class="metric-trend">目标：90%</span>
           </div>
           <div class="metric-card">
-            <small>数据同步延迟</small>
-            <strong>14 分钟</strong>
-            <span class="metric-trend neutral">API 正常</span>
+            <small>活跃用户</small>
+            <strong>856</strong>
+            <span class="metric-trend neutral">最近7天</span>
           </div>
         </div>
       </div>
@@ -407,71 +375,71 @@
         </div>
 
         <div class="panel" id="exam-alerts">
-          <h2>异常聚合 & 关注点 <span>实时刷新</span></h2>
+          <h2>数据质量监控</h2>
           <div class="list">
             <div class="list-item">
               <div>
-                <strong>模拟考成绩偏差 > 30 分</strong>
-                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">涉及 6 名考生，建议复核录入来源。</p>
+                <strong>成绩数据异常</strong>
+                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">6 名考生成绩数据疑似录入错误。</p>
               </div>
               <span class="chip">查看</span>
             </div>
             <div class="list-item">
               <div>
-                <strong>省份切换审批待办</strong>
-                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">北京→天津的申请需本周完成。</p>
+                <strong>信息缺失用户</strong>
+                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">42 名用户未完成基本信息填写。</p>
               </div>
-              <span class="chip">指派</span>
+              <span class="chip">提醒</span>
             </div>
             <div class="list-item">
               <div>
-                <strong>录入模板版本过期</strong>
-                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">广东省样本需更新 2026 版。</p>
+                <strong>院校数据更新</strong>
+                <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">需更新 2025 年招生计划数据。</p>
               </div>
-              <span class="chip">下载新模板</span>
+              <span class="chip">查看详情</span>
             </div>
           </div>
         </div>
       </div>
 
       <div class="panel full" id="exam-region">
-        <h2>地区完善进度 <span>重点关注省份</span></h2>
+        <h2>用户地区分布</h2>
         <table>
           <thead>
             <tr>
               <th>省份</th>
-              <th>完善率</th>
-              <th>在读年级分布</th>
-              <th>提醒</th>
+              <th>用户数量</th>
+              <th>信息完整率</th>
+              <th>备注</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>北京</td>
+              <td><strong>186</strong></td>
               <td>
                 <div class="progress-track"><span style="width: 78%;"></span></div>
-                <div class="progress-meta"><span>78%</span><span>目标 90%</span></div>
+                <div class="progress-meta"><span>78%</span></div>
               </td>
-              <td><div class="chips"><span class="chip">高三 62%</span><span class="chip">高二 30%</span></div></td>
-              <td>剩余 36 人待同步模拟考成绩。</td>
+              <td>36 人信息待完善</td>
             </tr>
             <tr>
               <td>上海</td>
+              <td><strong>245</strong></td>
               <td>
                 <div class="progress-track"><span style="width: 86%;"></span></div>
-                <div class="progress-meta"><span>86%</span><span>目标 92%</span></div>
+                <div class="progress-meta"><span>86%</span></div>
               </td>
-              <td><div class="chips"><span class="chip">高三 70%</span><span class="chip">高二 22%</span></div></td>
-              <td>重点学校需补录选科组合。</td>
+              <td>34 人信息待完善</td>
             </tr>
             <tr>
               <td>浙江</td>
+              <td><strong>328</strong></td>
               <td>
                 <div class="progress-track"><span style="width: 91%;"></span></div>
-                <div class="progress-meta"><span>91%</span><span>目标 94%</span></div>
+                <div class="progress-meta"><span>91%</span></div>
               </td>
-              <td><div class="chips"><span class="chip">高三 68%</span><span class="chip">高考复读 12%</span></div></td>
-              <td>个别考生科目重复，需人工处理。</td>
+              <td>29 人信息待完善</td>
             </tr>
           </tbody>
         </table>
@@ -518,28 +486,6 @@
       </div>
     </div>
 
-    <div class="admin-page" data-page="model">
-      <div class="panel full">
-        <h2>推荐模型版本 <span>当前：v1.7.2</span></h2>
-        <div class="list">
-          <div class="list-item">
-            <div>
-              <strong>AB 测试结果</strong>
-              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">命中率 +2.8%，用户满意度 +1.3%，点击率持平。</p>
-            </div>
-            <button class="btn-outline">查看报告</button>
-          </div>
-          <div class="list-item">
-            <div>
-              <strong>特征变更</strong>
-              <p style="margin:4px 0 0; color: var(--gray-500); font-size:12px;">新增热度衰减系数，引入高中历史录取稳定性特征。</p>
-            </div>
-            <button class="btn-outline">参数</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="admin-page" data-page="weights">
       <div class="panel full">
         <h2>权重策略配置 <span>同步至 2025-10-18</span></h2>
@@ -570,28 +516,7 @@
           </tbody>
         </table>
         <div class="actions-row">
-          <button class="btn-outline">编辑草稿</button>
-          <button class="btn-outline">提交审批</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="admin-page" data-page="release">
-      <div class="panel full">
-        <h2>灰度发布计划 <span>35% → 60%</span></h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <span>阶段一</span>
-            <p>浙江 / 上海 / 江苏 考生开启新模型，预计 10-25 完成监控。</p>
-          </div>
-          <div class="timeline-item">
-            <span>阶段二</span>
-            <p>扩展至长春、武汉地区，预计 11-05 前完成。</p>
-          </div>
-          <div class="timeline-item">
-            <span>回滚预案</span>
-            <p>命中率下降大于 5% 或反馈异常集中时触发自动回滚。</p>
-          </div>
+          <button class="btn-outline">保存配置</button>
         </div>
       </div>
     </div>

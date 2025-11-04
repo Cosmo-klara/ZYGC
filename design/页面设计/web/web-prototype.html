@@ -74,7 +74,6 @@
           <ul>
             <li><a href="#" class="active" data-page="home">📊 首页仪表盘</a></li>
             <li><a href="#" data-page="recommend">🎯 院校推荐 <span class="nav-badge">New</span></a></li>
-            <li><a href="#" data-page="heat">🔥 报考热度</a></li>
           </ul>
         </div>
 
@@ -135,9 +134,9 @@
               <span class="stat-chip-meta">符合偏好条件</span>
             </div>
             <div class="stat-chip warning">
-              <span class="stat-chip-label">热度预警</span>
-              <span class="stat-chip-value">2</span>
-              <span class="stat-chip-meta">新增复旦 / 同济提醒</span>
+              <span class="stat-chip-label">目标院校</span>
+              <span class="stat-chip-value">5 所</span>
+              <span class="stat-chip-meta">已添加追踪</span>
             </div>
             <div class="stat-chip danger">
               <span class="stat-chip-label">差距分析</span>
@@ -146,11 +145,11 @@
             </div>
           </div>
 
-          <div class="alert alert-warning">
-            <div class="alert-icon">⚠️</div>
+          <div class="alert alert-info">
+            <div class="alert-icon">ℹ️</div>
             <div class="alert-content">
-              <h4>报考热度提醒</h4>
-              <p>复旦大学教育学专业报考热度较去年同期上涨 18%，存在"扎堆风险"。建议增加 1-2 所稳妥备选院校。</p>
+              <h4>系统提示</h4>
+              <p>已为您匹配 28 所院校，建议合理分配"冲刺"、"稳妥"、"保底"院校比例，确保志愿填报安全。</p>
             </div>
           </div>
 
@@ -636,117 +635,6 @@
           </div>
         </div>
 
-        <!-- 报考热度页面 -->
-        <div class="page" data-page="heat">
-          <div class="page-header">
-            <h1 class="page-title">🔥 报考热度监测</h1>
-            <p class="page-subtitle">实时监测院校报考热度变化，帮助你规避扎堆风险</p>
-          </div>
-
-          <div class="grid grid-3" style="margin-bottom: 32px;">
-            <div class="card">
-              <div style="font-size: 14px; color: var(--gray-500); margin-bottom: 8px;">热度上涨院校</div>
-              <div style="font-size: 36px; font-weight: 700; color: var(--danger); margin-bottom: 4px;">12</div>
-              <div style="font-size: 14px; color: var(--gray-600);">较去年同期</div>
-            </div>
-            <div class="card">
-              <div style="font-size: 14px; color: var(--gray-500); margin-bottom: 8px;">热度持平院校</div>
-              <div style="font-size: 36px; font-weight: 700; color: var(--primary); margin-bottom: 4px;">45</div>
-              <div style="font-size: 14px; color: var(--gray-600);">波动范围 ±5%</div>
-            </div>
-            <div class="card">
-              <div style="font-size: 14px; color: var(--gray-500); margin-bottom: 8px;">热度下降院校</div>
-              <div style="font-size: 36px; font-weight: 700; color: var(--success); margin-bottom: 4px;">8</div>
-              <div style="font-size: 14px; color: var(--gray-600);">潜在机会</div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">热度预警列表</h3>
-              <span class="badge badge-danger">高风险关注</span>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>院校</th>
-                  <th>专业</th>
-                  <th>热度变化</th>
-                  <th>风险等级</th>
-                  <th>系统建议</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>复旦大学</strong></td>
-                  <td>教育学</td>
-                  <td style="color: var(--danger); font-weight: 600;">↑ 18%</td>
-                  <td><span class="badge badge-danger">高风险</span></td>
-                  <td>报考热度异常上涨，建议增加稳妥院校</td>
-                </tr>
-                <tr>
-                  <td><strong>同济大学</strong></td>
-                  <td>人文社科</td>
-                  <td style="color: var(--warning); font-weight: 600;">↑ 12%</td>
-                  <td><span class="badge badge-warning">中风险</span></td>
-                  <td>关注招生计划变化，适当调整定位</td>
-                </tr>
-                <tr>
-                  <td><strong>上海交通大学</strong></td>
-                  <td>综合</td>
-                  <td style="color: var(--warning); font-weight: 600;">↑ 9%</td>
-                  <td><span class="badge badge-warning">中风险</span></td>
-                  <td>持续观察，建议查看往年退档情况</td>
-                </tr>
-                <tr>
-                  <td><strong>南京师范大学</strong></td>
-                  <td>教育学</td>
-                  <td style="color: var(--success); font-weight: 600;">↓ 5%</td>
-                  <td><span class="badge badge-success">低风险</span></td>
-                  <td>竞争压力下降，可纳入备选列表</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="grid grid-2" style="margin-top: 24px;">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">热度趋势图</h3>
-                <span class="badge badge-primary">近30天</span>
-              </div>
-              <div class="chart-placeholder">📊 报考热度趋势折线图</div>
-            </div>
-
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">提醒记录</h3>
-                <span class="badge badge-primary">最近更新</span>
-              </div>
-              <div class="timeline">
-                <div class="timeline-item">
-                  <div class="timeline-time">10:24</div>
-                  <div class="timeline-content">
-                    向你推送「<strong>复旦大学热度上涨</strong>」提醒。
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-time">昨日 16:05</div>
-                  <div class="timeline-content">
-                    已将「<strong>上海交大热度提醒</strong>」同步给张老师。
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-time">昨日 09:12</div>
-                  <div class="timeline-content">
-                    新增「<strong>南京师范大学热度下降</strong>」机会提示。
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- 院校库页面 -->
         <div class="page" data-page="college">
           <div class="page-header">
@@ -932,7 +820,7 @@
           <div class="card" style="margin-bottom: 32px;">
             <div class="card-header">
               <h3 class="card-title">单科强弱分析</h3>
-              <span class="badge badge-primary">与目标群体对比</span>
+              <span class="badge badge-primary">个人能力评估</span>
             </div>
             <div class="radar-wrapper">
               <div class="radar-chart">
@@ -950,12 +838,12 @@
                 <div>
                   <h4 style="font-size: 15px; color: var(--gray-700); margin-bottom: 8px;">能力雷达</h4>
                   <p style="font-size: 13px; color: var(--gray-500); line-height: 1.6;">
-                    理工科得分呈尖峰分布，语文与综合科目形成短板。调整复习时间至「语文阅读+选考综合」可平衡整体形状。</p>
+                    理工科得分率较高，语文科目得分率相对较低。建议调整复习时间，重点关注语文阅读与综合科目。</p>
                 </div>
                 <div class="radar-legend">
                   <span><span class="legend-dot"></span>个人表现</span>
                   <span><span class="legend-dot"
-                      style="background: rgba(124, 134, 152, 0.45); box-shadow: 0 0 0 4px rgba(124, 134, 152, 0.12);"></span>目标群体均值</span>
+                      style="background: rgba(124, 134, 152, 0.45); box-shadow: 0 0 0 4px rgba(124, 134, 152, 0.12);"></span>满分参考</span>
                 </div>
               </div>
             </div>
@@ -964,8 +852,8 @@
                 <tr>
                   <th>科目</th>
                   <th>我的成绩</th>
-                  <th>目标群体平均分</th>
-                  <th>差值</th>
+                  <th>满分</th>
+                  <th>得分率</th>
                   <th>评价</th>
                   <th>建议</th>
                 </tr>
@@ -974,49 +862,49 @@
                 <tr>
                   <td><strong>数学</strong></td>
                   <td><strong>138</strong></td>
-                  <td>132</td>
-                  <td style="color: var(--success);"><strong>+6</strong></td>
+                  <td>150</td>
+                  <td><strong>92%</strong></td>
                   <td><span class="badge badge-success">强项</span></td>
                   <td>保持优势，继续刷高质量题库</td>
                 </tr>
                 <tr>
                   <td><strong>语文</strong></td>
                   <td><strong>122</strong></td>
-                  <td>128</td>
-                  <td style="color: var(--danger);"><strong>-6</strong></td>
+                  <td>150</td>
+                  <td><strong>81%</strong></td>
                   <td><span class="badge badge-warning">弱项</span></td>
                   <td>强化作文素材积累，关注基础题准确率</td>
                 </tr>
                 <tr>
                   <td><strong>英语</strong></td>
                   <td><strong>136</strong></td>
-                  <td>134</td>
-                  <td style="color: var(--success);"><strong>+2</strong></td>
+                  <td>150</td>
+                  <td><strong>91%</strong></td>
                   <td><span class="badge badge-success">优势</span></td>
                   <td>保持练习，适当增加听力训练</td>
                 </tr>
                 <tr>
                   <td><strong>物理</strong></td>
                   <td><strong>86</strong></td>
-                  <td>88</td>
-                  <td style="color: var(--warning);"><strong>-2</strong></td>
-                  <td><span class="badge badge-primary">持平</span></td>
+                  <td>100</td>
+                  <td><strong>86%</strong></td>
+                  <td><span class="badge badge-primary">良好</span></td>
                   <td>复习力学与电学重点章节</td>
                 </tr>
                 <tr>
                   <td><strong>化学</strong></td>
                   <td><strong>90</strong></td>
-                  <td>87</td>
-                  <td style="color: var(--success);"><strong>+3</strong></td>
+                  <td>100</td>
+                  <td><strong>90%</strong></td>
                   <td><span class="badge badge-success">优势</span></td>
                   <td>保持实验题和计算题训练</td>
                 </tr>
                 <tr>
                   <td><strong>政治</strong></td>
                   <td><strong>84</strong></td>
-                  <td>85</td>
-                  <td style="color: var(--warning);"><strong>-1</strong></td>
-                  <td><span class="badge badge-primary">持平</span></td>
+                  <td>100</td>
+                  <td><strong>84%</strong></td>
+                  <td><span class="badge badge-primary">良好</span></td>
                   <td>加强时事政治和主观题答题技巧</td>
                 </tr>
               </tbody>
