@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS `college_info`;
 
 CREATE TABLE `college_info` (
                                 `COLLEGE_CODE` INT NOT NULL COMMENT '院校编码（主键，例如 10001）',
-                                `COLLEGE_NAME` VARCHAR(100) NOT NULL COMMENT '院校名称',
+                                `COLLEGE_NAME` VARCHAR(255) NOT NULL COMMENT '院校名称',
                                 `IS_985` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '是否 985（0/1）',
                                 `IS_211` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '是否 211（0/1）',
                                 `IS_DFC` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '是否双一流（0/1）',
@@ -32,7 +32,7 @@ ALTER TABLE `college_info`
 
 CREATE TABLE `major_info` (
                             `MAJOR_ID` BIGINT NOT NULL AUTO_INCREMENT COMMENT '专业ID，主键',
-                            `MAJOR_NAME` VARCHAR(100) NOT NULL COMMENT '专业名称',
+                            `MAJOR_NAME` VARCHAR(255) NOT NULL COMMENT '专业名称',
                             `MAJOR_TYPE` VARCHAR(20) DEFAULT NULL COMMENT '专业类型（综合、理工等）',
                             `BASE_INTRO` TEXT DEFAULT NULL COMMENT '专业基础介绍',
                             PRIMARY KEY (`MAJOR_ID`),
@@ -44,7 +44,7 @@ CREATE TABLE `college_admission_score` (
                                         `ADMISSION_ID` BIGINT NOT NULL AUTO_INCREMENT COMMENT '录取分数线ID，主键',
                                         `COLLEGE_CODE` INT NOT NULL COMMENT '院校编码（关联 college_info.COLLEGE_CODE）',
                                         `TYPE` VARCHAR(20) DEFAULT NULL COMMENT '科类（文/理）',
-                                        `MAJOR_NAME` VARCHAR(100) DEFAULT NULL COMMENT '专业名称（字符串形式，便于历史兼容）',
+                                        `MAJOR_NAME` VARCHAR(255) DEFAULT NULL COMMENT '专业名称（字符串形式，便于历史兼容）',
                                         `PROVINCE` VARCHAR(48) NOT NULL COMMENT '录取省份',
                                         `ADMISSION_YEAR` YEAR NOT NULL COMMENT '录取年份',
                                         `MIN_SCORE` DECIMAL(3,0) NOT NULL COMMENT '最低分（整数）',
@@ -77,7 +77,7 @@ CREATE TABLE `college_plan` (
 
 CREATE TABLE `school_enrollment` (
                                     `SCHOOL_ENROLLMENT_ID` BIGINT NOT NULL AUTO_INCREMENT COMMENT '高中升学ID，主键',
-                                    `COLLEGE_NAME` VARCHAR(100) DEFAULT NULL COMMENT '被录取院校名称（字符串，便于演示）',
+                                    `COLLEGE_NAME` VARCHAR(255) DEFAULT NULL COMMENT '被录取院校名称（字符串，便于演示）',
                                     `GRADUATION_YEAR` YEAR NOT NULL COMMENT '毕业年份',
                                     `ADMISSION_COUNT` INT NOT NULL COMMENT '录取人数',
                                     `MIN_SCORE` DECIMAL(3,0) DEFAULT NULL COMMENT '最低分（整数）',
@@ -93,7 +93,7 @@ CREATE TABLE `users` (
                         `STATUS` TINYINT NOT NULL DEFAULT 1 COMMENT '账户状态（1-正常，0-禁用）',
                         `GENDER` TINYINT DEFAULT NULL COMMENT '性别（1-男，2-女）',
                         `PROVINCE` VARCHAR(48) NOT NULL COMMENT '考生所在省份',
-                        `SCHOOL_NAME` VARCHAR(100) NOT NULL COMMENT '所在高中名称（文本）',
+                        `SCHOOL_NAME` VARCHAR(255) NOT NULL COMMENT '所在高中名称',
                         `CREATED_AT` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
                         PRIMARY KEY (`USER_ID`),
                         UNIQUE KEY `ux_users_username` (`USERNAME`),

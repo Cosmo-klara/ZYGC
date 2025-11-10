@@ -136,7 +136,7 @@ def post_filter_and_export(
         df_final_batch[col] = s.astype("Int64")
 
     batch_series = df_final_batch["批次"].astype(str).str.replace(r"\s+", "", regex=True).str.strip()
-    keep_mask = batch_series.str.startswith("本科一批") | batch_series.str.startswith("本科批") | batch_series.str.startswith("平行录取一段")
+    keep_mask = batch_series.str.startswith("本科一批") | batch_series.str.startswith("本科批") | batch_series.str.startswith("普通类一段")
 
     removed_batch = len(df_final_batch) - int(keep_mask.sum())
     df_final_batch = df_final_batch[keep_mask].copy()
