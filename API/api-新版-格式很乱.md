@@ -1,6 +1,18 @@
 ### 接口文档
 
+- 非本地部署测试
+
 https://marlyn-unalleviative-annabel.ngrok-free.dev 替换 http://localhost:3000
+
+#### 开发用测试接口
+
+返回数据库大体结构和3条示例数据
+
+GET
+
+https://marlyn-unalleviative-annabel.ngrok-free.dev/dev-samples
+
+http://localhost:3000/dev
 
 
 #### 注册

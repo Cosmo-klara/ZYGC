@@ -12,5 +12,38 @@
 
 删除不存在于院校数据统一招生代码的行
 
+### 本地使用数据说明
 
+> 需要配置数据库连接信息，在 `ZYGC\scripts\import_data.py` 中修改
 
+#### 基于现有数据
+
+找到文件 `ZYGC\scripts\import_data.py`，直接运行即可，将数据导入到本地数据库中
+
+#### 从 excel 中处理
+
+嘶，我没上传标准格式的 excel 文件，如果有这个文件的话，放在 `ZYGC\data` 目录中的子文件夹内，并在子文件夹中编写 `config.json` 文件，示例内容如下：
+
+```json
+{
+    "REGION_PREFIX": "浙江",
+    "YEARS": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022"
+    ],
+    "OUTPUT_CSV_PATH": "temp.csv",
+    "SHEET_NAME": null
+}
+```
+
+用于配置数据清洗信息，`REGION_PREFIX` 为区域前缀，`YEARS` 为需要处理的年份，`OUTPUT_CSV_PATH` 为临时文件输出路径
+
+在运行 `ZYGC\data\DataProcess.py` 前，需要获取`全国大学数据_合并.csv`文件以进行筛选
+
+该文件在 data 子目录，院校数据下；原始文件为`院校数据.xlsx`和`全国大学数据.csv`, 逐个执行 `1.ipynb`、`2.ipynb`, 最终运行`merge_universities.py`即可
+
+处理完成后即可运行 `ZYGC\data\DataProcess.py` 进行最终数据清洗，得到现有数据后按照基于现有数据的说明进行导入即可
