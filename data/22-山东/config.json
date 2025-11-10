@@ -1,0 +1,11 @@
+{
+    "REGION_PREFIX": "山东",
+    "YEARS": [
+        "2017",
+        "2018",
+        "2019",
+        "2020"
+    ],
+    "OUTPUT_CSV_PATH": "temp.csv",
+    "SHEET_NAME": null
+}

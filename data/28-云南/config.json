@@ -1,0 +1,12 @@
+{
+    "REGION_PREFIX": "云南",
+    "YEARS": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021"
+    ],
+    "OUTPUT_CSV_PATH": "temp.csv",
+    "SHEET_NAME": null
+}

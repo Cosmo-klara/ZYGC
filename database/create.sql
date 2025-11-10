@@ -31,29 +31,29 @@ ALTER TABLE `college_info`
 
 
 CREATE TABLE `major_info` (
-                              `MAJOR_ID` BIGINT NOT NULL AUTO_INCREMENT COMMENT '专业ID，主键',
-                              `MAJOR_NAME` VARCHAR(100) NOT NULL COMMENT '专业名称',
-                              `MAJOR_TYPE` VARCHAR(20) DEFAULT NULL COMMENT '专业类型（综合、理工等）',
-                              `BASE_INTRO` TEXT DEFAULT NULL COMMENT '专业基础介绍',
-                              PRIMARY KEY (`MAJOR_ID`),
-                              UNIQUE KEY `ux_major_name` (`MAJOR_NAME`),
-                              KEY `idx_major_type` (`MAJOR_TYPE`)
+                            `MAJOR_ID` BIGINT NOT NULL AUTO_INCREMENT COMMENT '专业ID，主键',
+                            `MAJOR_NAME` VARCHAR(100) NOT NULL COMMENT '专业名称',
+                            `MAJOR_TYPE` VARCHAR(20) DEFAULT NULL COMMENT '专业类型（综合、理工等）',
+                            `BASE_INTRO` TEXT DEFAULT NULL COMMENT '专业基础介绍',
+                            PRIMARY KEY (`MAJOR_ID`),
+                            UNIQUE KEY `ux_major_name` (`MAJOR_NAME`),
+                            KEY `idx_major_type` (`MAJOR_TYPE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='专业信息表';
 
 CREATE TABLE `college_admission_score` (
-                                          `ADMISSION_ID` BIGINT NOT NULL AUTO_INCREMENT COMMENT '录取分数线ID，主键',
-                                          `COLLEGE_CODE` INT NOT NULL COMMENT '院校编码（关联 college_info.COLLEGE_CODE）',
-                                          `TYPE` VARCHAR(20) DEFAULT NULL COMMENT '科类（文/理）',
-                                          `MAJOR_NAME` VARCHAR(100) DEFAULT NULL COMMENT '专业名称（字符串形式，便于历史兼容）',
-                                          `PROVINCE` VARCHAR(48) NOT NULL COMMENT '录取省份',
-                                          `ADMISSION_YEAR` YEAR NOT NULL COMMENT '录取年份',
-                                          `MIN_SCORE` DECIMAL(3,0) NOT NULL COMMENT '最低分（整数）',
-                                          `MIN_RANK` BIGINT NOT NULL COMMENT '最低位次',
-                                          PRIMARY KEY (`ADMISSION_ID`),
-                                          KEY `idx_adm_college_year` (`COLLEGE_CODE`, `ADMISSION_YEAR`),
-                                          KEY `idx_adm_province_year` (`PROVINCE`, `ADMISSION_YEAR`),
-                                          CONSTRAINT `fk_adm_college_code` FOREIGN KEY (`COLLEGE_CODE`) REFERENCES `college_info`(`COLLEGE_CODE`)
-                                              ON DELETE CASCADE ON UPDATE CASCADE
+                                        `ADMISSION_ID` BIGINT NOT NULL AUTO_INCREMENT COMMENT '录取分数线ID，主键',
+                                        `COLLEGE_CODE` INT NOT NULL COMMENT '院校编码（关联 college_info.COLLEGE_CODE）',
+                                        `TYPE` VARCHAR(20) DEFAULT NULL COMMENT '科类（文/理）',
+                                        `MAJOR_NAME` VARCHAR(100) DEFAULT NULL COMMENT '专业名称（字符串形式，便于历史兼容）',
+                                        `PROVINCE` VARCHAR(48) NOT NULL COMMENT '录取省份',
+                                        `ADMISSION_YEAR` YEAR NOT NULL COMMENT '录取年份',
+                                        `MIN_SCORE` DECIMAL(3,0) NOT NULL COMMENT '最低分（整数）',
+                                        `MIN_RANK` BIGINT NOT NULL COMMENT '最低位次',
+                                        PRIMARY KEY (`ADMISSION_ID`),
+                                        KEY `idx_adm_college_year` (`COLLEGE_CODE`, `ADMISSION_YEAR`),
+                                        KEY `idx_adm_province_year` (`PROVINCE`, `ADMISSION_YEAR`),
+                                        CONSTRAINT `fk_adm_college_code` FOREIGN KEY (`COLLEGE_CODE`) REFERENCES `college_info`(`COLLEGE_CODE`)
+                                            ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='历年录取分数线（按院校/省份/年份维度）';
 
 
@@ -108,7 +108,6 @@ CREATE TABLE `student_score` (
                                 `PROVINCE` VARCHAR(48) NOT NULL COMMENT '考生所在省份',
                                 `TOTAL_SCORE` DECIMAL(3,0) NOT NULL COMMENT '高考总成绩（整数）',
                                 `RANK_IN_PROVINCE` BIGINT DEFAULT NULL COMMENT '省内排名',
-                                `CREATED_AT` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录时间',
                                 PRIMARY KEY (`SCORE_ID`),
                                 KEY `idx_score_student_year` (`STUDENT_ID`, `EXAM_YEAR`),
                                 KEY `idx_score_province` (`PROVINCE`),
