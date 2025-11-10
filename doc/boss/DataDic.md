@@ -24,7 +24,7 @@ erDiagram
 | 字段名 | 数据类型 | 可为空 | 主键 | 说明 |
 |--------|---------|------|------|--------|
 | COLLEGE_CODE | INT | 否 | 是 | 院校编码（如：10001） |
-| COLLEGE_NAME | VARCHAR(100) | 否 | 否 | 院校名称 |
+| COLLEGE_NAME | VARCHAR(255) | 否 | 否 | 院校名称 |
 | IS_985 | TINYINT(1) | 否 | 否 | 是否 985（0/1，仅允许 0/1） |
 | IS_211 | TINYINT(1) | 否 | 否 | 是否 211（0/1，仅允许 0/1） |
 | IS_DFC | TINYINT(1) | 否 | 否 | 是否双一流（0/1，仅允许 0/1） |
@@ -39,7 +39,7 @@ erDiagram
 | ADMISSION_ID | BIGINT | 否 | 是 | 录取分数线ID |
 | COLLEGE_CODE | INT | 否 | 否 | 院校编码（关联院校信息表） |
 | TYPE | VARCHAR(20) | 是 | 否 | 科类（文，理） |
-| MAJOR_NAME | VARCHAR(100) | 是 | 否 | 专业名称 |
+| MAJOR_NAME | VARCHAR(255) | 是 | 否 | 专业名称 |
 | PROVINCE | VARCHAR(48) | 否 | 否 | 录取省份 |
 | ADMISSION_YEAR | YEAR | 否 | 否 | 录取年份 |
 | MIN_SCORE | DECIMAL(3,0) | 否 | 否 | 最低分 |
@@ -71,7 +71,7 @@ erDiagram
 | 字段名 | 数据类型 | 可为空 | 主键 | 说明 |
 |--------|---------|------|------|--------|
 | SCHOOL_ENROLLMENT_ID | BIGINT | 否 | 是 | 高中升学ID |
-| COLLEGE_NAME | VARCHAR(100) | 是 | 否 | 院校名称 |
+| COLLEGE_NAME | VARCHAR(255) | 是 | 否 | 院校名称 |
 | GRADUATION_YEAR | YEAR | 否 | 否 | 毕业年份 |
 | ADMISSION_COUNT | INT | 否 | 否 | 录取人数 |
 | MIN_SCORE | DECIMAL(3,0) | 是 | 否 | 最低分 |
@@ -87,7 +87,7 @@ erDiagram
 | 字段名 | 数据类型 | 可为空 | 主键 | 说明 |
 |--------|---------|------|------|--------|
 | MAJOR_ID | BIGINT | 否 | 是 | 专业ID |
-| MAJOR_NAME | VARCHAR(100) | 否 | 否 | 专业名称 |
+| MAJOR_NAME | VARCHAR(255) | 否 | 否 | 专业名称 |
 | MAJOR_TYPE | VARCHAR(20) | 是 | 否 | 专业类型（综合、理工等） |
 | BASE_INTRO | TEXT | 是 | 否 | 专业基础介绍 |
 
@@ -103,7 +103,7 @@ erDiagram
 | STATUS        | TINYINT      | 否   | 否  | 账户状态（1-正常，0-禁用）  |
 | GENDER        | TINYINT      | 是   | 否  | 性别（1-男，2-女）      |
 | PROVINCE      | VARCHAR(48)  | 否   | 否  | 考生所在省份           |
-| SCHOOL_NAME   | VARCHAR(100) | 否   | 否  | 所在高中             |
+| SCHOOL_NAME   | VARCHAR(255) | 否   | 否  | 所在高中             |
 | CREATED_AT    | DATETIME     | 否   | 否  | 创建时间             |
 
 + 考生成绩信息表
