@@ -86,7 +86,7 @@ def smart_shorten_major_name(value, max_len: int = MAX_LEN_MAJOR_NAME) -> Option
     通用规则：
     - 字符串不超长：原样返回；
     - 超长：优先按最后一个“、”截断；
-      - 若截断后存在未闭合“（”，补齐并加“等）”；
+    - 若截断后存在未闭合“（”，补齐并加“等）”；
     - 若没有“、”：直接硬截断，并尽量配平括号。
     """
     s = sanitize_text(value, None)
