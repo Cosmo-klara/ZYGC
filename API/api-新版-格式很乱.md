@@ -12,7 +12,7 @@ GET
 
 https://marlyn-unalleviative-annabel.ngrok-free.dev/dev-samples
 
-http://localhost:3000/dev
+https://marlyn-unalleviative-annabel.ngrok-free.dev/dev
 
 
 #### 注册
