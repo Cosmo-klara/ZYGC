@@ -84,7 +84,7 @@ CREATE TABLE `school_enrollment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='高中升学记录（模拟）';
 
 CREATE TABLE `users` (
-                        `USER_ID` BIGINT NOT NULL COMMENT '用户ID（学号或系统ID）',
+                        `USER_ID` BIGINT NOT NULL COMMENT '用户ID（系统ID）',
                         `USERNAME` VARCHAR(20) NOT NULL COMMENT '用户名（5-20字符）',
                         `PASSWORD` VARCHAR(255) NOT NULL COMMENT '密码哈希（请存储 bcrypt/hash）',
                         `STATUS` TINYINT NOT NULL DEFAULT 1 COMMENT '账户状态（1-正常，0-禁用）',
