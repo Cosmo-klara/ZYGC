@@ -2,40 +2,10 @@
 
 TODO：
 
-1、模拟数据制作（major_info,cllege_plan,school_enrollment,students_score，按照数据字典写模拟数据写成csv发给我就行，我来上传到数据库）
+1、模拟数据制作（major_info,college_plan,school_enrollment,students_score，按照数据字典写模拟数据写成csv发给我就行，我来上传到数据库）
 2、设计文档！！！
 3、前后端对接，后端接口丰富
 4、推荐算法和爬取对接到前后端
-
-由于数据获取困难，我需要制作一些模拟数据，按照数据字典的格式，制作出 major_info, cllege_plan, school_enrollment, students_score 这四个表的模拟数据，csv 格式即可，并为我提供将csv文件导入数据库的代码。
-
-对于 major_info 表，我将给出一些专业名称
-
-
-计算机科学与技术
-土木工程
-自动化
-会计学
-高分子材料与工程
-生物信息学
-临床医学
-金融学
-应用物理学
-软件工程
-社会学
-汉语言文学
-新闻学
-建筑学
-教育学(师范)
-法学
-化学工程与工艺
-通信工程
-电气工程及其自动化
-材料科学与工程
-航空航天类
-
-cllege_plan
-
 
 ### 文档相关
 
