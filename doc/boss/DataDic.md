@@ -53,7 +53,7 @@ erDiagram
 |--------|---------|------|------|--------|
 | PLAN_ID | BIGINT | 否 | 是 | 计划ID |
 | COLLEGE_ID | INT | 是 | 否 | 院校ID（关联院校信息表） |
-| MAJOR_ID | BIGINT | 是 | 否 | 专业ID（关联专业信息表） |
+| MAJOR_NAME | VARCHAR(255) | 是 | 否 | 专业名称 |
 | PROVINCE | VARCHAR(48) | 否 | 否 | 招生省份 |
 | ADMISSION_YEAR | YEAR | 否 | 否 | 招生年份 |
 | PLAN_COUNT | INT | 否 | 否 | 招生计划数 |

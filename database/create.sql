@@ -60,17 +60,14 @@ CREATE TABLE `college_admission_score` (
 CREATE TABLE `college_plan` (
                                 `PLAN_ID` BIGINT NOT NULL AUTO_INCREMENT COMMENT '计划ID，主键',
                                 `COLLEGE_CODE` INT DEFAULT NULL COMMENT '院校编码（关联 college_info.COLLEGE_CODE）',
-                                `MAJOR_ID` BIGINT DEFAULT NULL COMMENT '专业ID（关联 major_info.MAJOR_ID）',
+                                `MAJOR_NAME` VARCHAR(255) DEFAULT NULL COMMENT '专业名称',
                                 `PROVINCE` VARCHAR(48) NOT NULL COMMENT '招生省份',
                                 `ADMISSION_YEAR` YEAR NOT NULL COMMENT '招生年份',
                                 `PLAN_COUNT` INT NOT NULL COMMENT '招生计划数',
                                 `DESCRIPTION` VARCHAR(255) DEFAULT NULL COMMENT '备注说明',
                                 PRIMARY KEY (`PLAN_ID`),
                                 KEY `idx_plan_college_year` (`COLLEGE_CODE`, `ADMISSION_YEAR`),
-                                KEY `idx_plan_major` (`MAJOR_ID`),
                                 CONSTRAINT `fk_plan_college_code` FOREIGN KEY (`COLLEGE_CODE`) REFERENCES `college_info`(`COLLEGE_CODE`)
-                                    ON DELETE SET NULL ON UPDATE CASCADE,
-                                CONSTRAINT `fk_plan_major` FOREIGN KEY (`MAJOR_ID`) REFERENCES `major_info`(`MAJOR_ID`)
                                     ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='院校招生计划（模拟数据）';
 
